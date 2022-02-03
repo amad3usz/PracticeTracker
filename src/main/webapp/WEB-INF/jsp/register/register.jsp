@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../include/header.jsp" />
 
 
@@ -9,6 +10,7 @@
                 class="py-5 me-md-3 px-3 px-md-5 text-white overflow-hidden"
         >
             <form class="row needs-validation" id="registerForm" method="GET" action="/registration/registerSubmit">
+                <input type="hidden" name="id" value="${form.id}">
                 <div class="col-sm-4 mt-3">
                     <label for="firstName" class="form-label">First Name</label>
                     <input
@@ -19,6 +21,7 @@
                             pattern="^[A-Za-z]+$"
                             title="Must contain only uppercase and lowercase letters"
                             class="form-control"
+                            value="${form.firstName}"
                             required
                     />
                 </div>
@@ -32,6 +35,7 @@
                             pattern="^[A-Za-z]+$"
                             title="Must contain only uppercase and lowercase letters"
                             class="form-control"
+                            value="${form.lastName}"
                             required
                     />
                 </div>
@@ -43,6 +47,7 @@
                             name="email"
                             placeholder="Enter Your Email"
                             class="form-control"
+                            value="${form.email}"
                             required
                     />
                 </div>
@@ -54,8 +59,9 @@
                             name="username"
                             placeholder="Enter a Username with only letters and numbers"
                             pattern="^[A-Za-z0-9]{1,15}$"
-                            title="Must contain any assortment of letters and numbers, and is at most 15 characters long"
+                            title="Must only letters and numbers, and is at most 15 characters long"
                             class="form-control"
+                            value="${form.username}"
                             required
                     />
                 </div>
@@ -67,17 +73,19 @@
                             name="password"
                             placeholder="Enter Your Password"
                             class="form-control"
+                            value="${form.password}"
                             required
                     />
                 </div>
                 <div class="col-sm-4 mt-3">
-                    <label for="confirm" class="form-label">Confirm Password</label>
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
                     <input
-                            id="confirm"
+                            id="confirmPassword"
                             type="password"
-                            name="confirm"
+                            name="confirmPassword"
                             placeholder="Confirm Your Password"
                             class="form-control"
+                            value="${form.confirmPassword}"
                             required
                     />
                 </div>
@@ -91,6 +99,7 @@
                                 name="gender"
                                 value="female"
                                 class="form-check-input"
+<%--                                value="${form.gender}"--%>
                                 required
                         />
                         <label for="female" class="form-check-label">Female</label>
@@ -102,6 +111,7 @@
                                 name="gender"
                                 value="male"
                                 class="form-check-input"
+<%--                                value="${form.gender}"--%>
                                 required
                         />
                         <label for="male" class="form-check-label">Male</label>
@@ -113,6 +123,7 @@
                                 name="gender"
                                 value="non-binary"
                                 class="form-check-input"
+<%--                                value="${form.gender}"--%>
                                 required
                         />
                         <label for="non-binary" class="form-check-label"
@@ -257,6 +268,9 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm text-center">
+                        <c:forEach var="message" items="${form.errorMessages}" varStatus="status">
+                            <span style="color:red">${message}</span><br />
+                        </c:forEach>
                         <button class="btn btn-primary" type="submit">Register</button>
                     </div>
                 </div>

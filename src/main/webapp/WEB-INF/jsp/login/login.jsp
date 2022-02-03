@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../include/header.jsp" />
 
 
@@ -59,7 +60,7 @@
                     <div class="col-sm text-center">
                         <p>
                             Not a registered user? Click
-                            <a href="/register.html">here</a> to sign up!
+                            <a href="/registration/register">here</a> to sign up!
                         </p>
                     </div>
                 </div>
