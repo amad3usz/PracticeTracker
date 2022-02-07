@@ -18,7 +18,8 @@
                     </form>
 
 
-                        <c:if test="${userListKey != null}">
+                        <c:if test="${ userListKey != null || userListKey.id != ''}">
+<%--                            not sure what to do here to not show this if the resulting --%>
                             <table>
                                 <tr>
                                     <td><b>Id</b></td>

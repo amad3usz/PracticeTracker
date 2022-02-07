@@ -26,7 +26,7 @@
                 </p>
             </div>
             <div class="col-md-4 col-sm-12">
-                <img src="/images/notebook.jpeg" class="img-fluid" />
+                <img src="../../../pub/images/notebook.jpeg" class="img-fluid" />
             </div>
         </div>
     </div>

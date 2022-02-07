@@ -54,7 +54,7 @@ public class RegisterController {
         String profileImage = form.getProfileImage();
 
         System.out.println(form); //from toString method in bean, formats the output to individual lines without having to assign each value to a variable
-        System.out.println(firstName + lastName + email + username + password + gender + DOB + skillsPracticing2 + profileImage);
+        System.out.println(firstName + lastName + email + username + password + confirmPassword +  gender + DOB + skillsPracticing2 + profileImage);
 
         if (errors.hasErrors()) {
             for ( FieldError error : errors.getFieldErrors() ) {
@@ -64,7 +64,15 @@ public class RegisterController {
             response.addObject("form", form);
             response.setViewName("register/register");
         } else {
-            User user = new User();
+
+            User user = null;
+
+            if (form.getId() == null) {
+                user = new User();
+            } else {
+                user = userDao.findById(form.getId());
+            }
+
 
             user.setEmail(form.getEmail());
             user.setFirstName(form.getFirstName());

@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.Length;
-import org.perscholas.practicetracker.validation.EmailUnique;
+import org.perscholas.practicetracker.validation.TwoFieldsEqual;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Getter
 @Setter
-//@TwoFieldsEqual(passwordField = "password", passwordConfirmField = "confirmPassword", message = "Passwords must be the same")
+@TwoFieldsEqual(passwordField = "password", passwordConfirmField = "confirmPassword", message = "Passwords must be the same")
 public class RegisterFormBean {
 
     private Integer id;
@@ -31,7 +31,7 @@ public class RegisterFormBean {
 
     @NotEmpty(message = "Email is required")
     @Pattern(regexp = "^.+@.+$" , message = "Invalid email format")
-    @EmailUnique(message = "Email must be unique")
+//    @EmailUnique(message = "Email must be unique")
     private String email;
 
     @NotEmpty (message = "Username is required")

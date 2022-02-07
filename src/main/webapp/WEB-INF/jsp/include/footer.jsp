@@ -4,7 +4,7 @@
 <footer class="footer mt-auto py-1 fixed-bottom bg-light">
     <ul class="nav justify-content-center border-bottom pb-1 mb-1">
         <li class="nav-item">
-            <a href="/index.html" class="nav-link px-2">Home</a>
+            <a href="/index" class="nav-link px-2 ${page.endsWith('/index') ? 'active' : ''}">Home</a>
         </li>
         <li class="nav-item">
             <a href="/registration/register" class="nav-link px-2 ${page.endsWith('/registration/register') ? 'active' : ''}">Register</a>
@@ -16,7 +16,10 @@
             <a href="/profile" class="nav-link px-2">My Profile</a>
         </li>
         <li class="nav-item">
-            <a href="/followingList" class="nav-link px-2">Friends</a>
+            <a href="/followingList" class="nav-link px-2">Following</a>
+        </li>
+        <li class="nav-item">
+            <a href="/search" class="nav-link px-2">Search</a>
         </li>
         <li class="nav-item">
             <a href="/inputHistory" class="nav-link px-2">Entries</a>

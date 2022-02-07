@@ -30,7 +30,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index.html">Practice Tracker</a>
+        <a class="navbar-brand" href="/index">Practice Tracker</a>
         <button
                 class="navbar-toggler"
                 type="button"
@@ -45,39 +45,50 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/' || '/index') ? 'active' : ''}" aria-current="page" href="/index.html"
-                    >Home</a
-                    >
+                    <a class="nav-link ${page.endsWith('/') ? 'active' : ''} ${page.endsWith('/index') ? 'active' : ''}" aria-current="page" href="index"
+                    >Home</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a
-                            class="nav-link dropdown-toggle ${page.endsWith('/register' || '/login' || '/profile') ? 'active' : ''}"
-                            href="#"
-                            id="navbarDropdown"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        My Account
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item ${page.endsWith('/register') ? 'active' : ''}" href="/registration/register">Register</a>
-                        </li>
-                        <li><a class="dropdown-item ${page.endsWith('/login') ? 'active' : ''}" href="/login">Login</a></li>
-                        <li>
-                            <a class="dropdown-item ${page.endsWith('/profile') ? 'active' : ''}" href="/profile">My Profile</a>
-                        </li>
-                    </ul>
+<%--                <li class="nav-item dropdown ${page.endsWith('/register' || '/login' || '/profile') ? 'active' : ''}">--%>
+<%--                    <a--%>
+<%--                            class="nav-link dropdown-toggle "--%>
+<%--                            href="#"--%>
+<%--                            id="navbarDropdown"--%>
+<%--                            role="button"--%>
+<%--                            data-bs-toggle="dropdown"--%>
+<%--                            aria-expanded="false"--%>
+<%--                    >--%>
+<%--                        My Account--%>
+<%--                    </a>--%>
+<%--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">--%>
+<%--                        <li>--%>
+<%--                            <a class="dropdown-item ${page.endsWith('/register') ? 'active' : ''}" href="/registration/register">Register</a>--%>
+<%--                        </li>--%>
+<%--                        <li><a class="dropdown-item ${page.endsWith('/login') ? 'active' : ''}" href="/login">Login</a></li>--%>
+<%--                        <li>--%>
+<%--                            <a class="dropdown-item ${page.endsWith('/profile') ? 'active' : ''}" href="/profile">My Profile</a>--%>
+<%--                        </li>--%>
+<%--                    </ul>--%>
+<%--                </li>--%>
+                <li class="nav-item">
+                    <a class="nav-link ${page.endsWith('/register') ? 'active' : ''}" href="/registration/register">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/') ? 'active' : ''}" href="/friendslist">Friends</a>
+                    <a class="nav-link ${page.endsWith('/login') ? 'active' : ''}" href="/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/') ? 'active' : ''}" href="/inputHistory">Entries</a>
+                    <a class="nav-link ${page.endsWith('/profile') ? 'active' : ''}" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/') ? 'active' : ''}" href="/dataEntry">Record!</a>
+                    <a class="nav-link ${page.endsWith('/userList/userList') ? 'active' : ''}" href="/userList">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ${page.endsWith('/following') ? 'active' : ''}" href="/followinglist">Following</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ${page.endsWith('/inputHistory') ? 'active' : ''}" href="/inputHistory">Entries</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ${page.endsWith('/dataEntry') ? 'active' : ''}" href="/dataEntry">Record!</a>
                 </li>
             </ul>
         </div>

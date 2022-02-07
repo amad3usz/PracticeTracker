@@ -1,18 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../include/header.jsp" />
 
-
-<%--<body>--%>
-
-<%--<form method="GET" action="/loginSubmit">--%>
-<%--    username: <input type="text" name="username">--%>
-<%--    <br>--%>
-<%--    password: <input type="password" name="password">--%>
-<%--    <br>--%>
-<%--    <button type="submit">submit</button>--%>
-<%--</form>--%>
-<%--</body>--%>
-
 <main>
     <div class="container">
         <div id="title" class="h1">LOGIN</div>
