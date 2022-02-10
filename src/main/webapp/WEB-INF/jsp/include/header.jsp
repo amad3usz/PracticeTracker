@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="page" value="${requestScope['javax.servlet.forward.request_uri']}" />
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -73,7 +75,12 @@
                     <a class="nav-link ${page.endsWith('/register') ? 'active' : ''}" href="/registration/register">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/login') ? 'active' : ''}" href="/login">Login</a>
+                    <sec:authorize access="isAuthenticated()">
+                        <a class="nav-link" href="/login/logout">Logout</a>
+                    </sec:authorize>
+                    <sec:authorize access="!isAuthenticated()">
+                        <td><a class="nav-link ${page.endsWith('/login') ? 'active' : ''}" href="/login/login">Login</a></td>
+                    </sec:authorize>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link ${page.endsWith('/profile') ? 'active' : ''}" href="/profile">Profile</a>

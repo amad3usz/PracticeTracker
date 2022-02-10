@@ -12,8 +12,6 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    // this annotation is what tells hibernate that this variable is an auto
-    // incremented primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
@@ -21,14 +19,14 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "password")
     private String password;
 
-    @Column(name = "confirmPassword")
+    @Column(name = "confirm_password")
     private String confirmPassword;
-
-    @Column(name = "email")
-    private String email;
 
     @Column(name = "first_name")
     private String firstName;
@@ -36,6 +34,12 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-//    @Column(name = "phone")
-//    private String phone;
+    @Column(name = "gender")
+    private String gender;
+
+    @Column(name = "skills_practicing")
+    private String skillsPracticing;
+
+    @Column(name = "profile_icon")
+    private String profileIcon;
 }

@@ -8,21 +8,20 @@
                 id="content"
                 class="py-5 me-md-3 px-3 px-md-5 text-white overflow-hidden"
         >
-            <form action="/loginSubmit">
+            <form action="/login/loginSecurityPost" method="POST">
                 <div class="form-group row">
                     <div class="col-sm">
                         <label for="username" class="form-label">Username</label>
                         <input
                                 id="username"
                                 type="text"
-                                name="usernameLogin"
+                                name="username"
                                 placeholder="Enter Your Username"
                                 pattern="^[A-Za-z0-9]{1,15}$"
                                 title="Must contain any assortment of letters and numbers, and is at most 15 characters long"
                                 class="form-control"
                                 required
                         />
-                        <p style="color:#ff0000">${errorMessage}</p>
                     </div>
 
                     <div class="col-sm">
@@ -30,12 +29,13 @@
                         <input
                                 id="password"
                                 type="password"
-                                name="passwordLogin"
+                                name="password"
                                 placeholder="Enter Your Password"
                                 class="form-control"
                                 required
                         />
                     </div>
+                    <p style="color:#ff0000">${errorMessage}</p>
                 </div>
                 <br />
                 <div class="row">

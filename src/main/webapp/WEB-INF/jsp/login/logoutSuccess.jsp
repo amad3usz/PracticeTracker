@@ -3,7 +3,7 @@
 
 <main>
     <div class="container">
-        <div id="title" class="h1">LOGIN</div>
+        <div id="title" class="h1">LOG OUT</div>
         <div
                 id="content"
                 class="py-5 me-md-3 px-3 px-md-5 text-white overflow-hidden"
@@ -11,8 +11,7 @@
 
             <div class="row">
                 <div class="col-sm text-center">
-                    <p>Hello ${loggedInUser}!</p>
-                    <a href="/logout" methods="GET">LOGOUT</a>
+                    You've been successfully logged out.
                 </div>
             </div>
 
