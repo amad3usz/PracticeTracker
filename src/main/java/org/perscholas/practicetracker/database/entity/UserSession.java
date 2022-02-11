@@ -16,6 +16,8 @@ public class UserSession {
     @Column(name = "id")
     private Integer id;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
     @Column(name = "user_id")
     private Integer userId;
 
@@ -34,4 +36,20 @@ public class UserSession {
     @Column(name = "notes")
     private String notes;
 
+    @Column(name = "time")
+    private Integer time;
+
+    @Override
+    public String toString() {
+        return "UserSession{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", sessionId=" + sessionId +
+                ", date='" + date + '\'' +
+                ", rating=" + rating +
+                ", sessionName='" + sessionName + '\'' +
+                ", notes='" + notes + '\'' +
+                ", time=" + time +
+                '}';
+    }
 }

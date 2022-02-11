@@ -27,6 +27,10 @@
             rel="stylesheet"
     />
     <link rel="stylesheet" href="../../../pub/css/styles.css" />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script src="../../../pub/js/script.js"></script>
 </head>
 <body>
@@ -47,7 +51,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/') ? 'active' : ''} ${page.endsWith('/index') ? 'active' : ''}" aria-current="page" href="index"
+                    <a class="nav-link ${page.endsWith('/') ? 'active' : ''} ${page.endsWith('/index') ? 'active' : ''}" aria-current="page" href="/index"
                     >Home</a>
                 </li>
 <%--                <li class="nav-item dropdown ${page.endsWith('/register' || '/login' || '/profile') ? 'active' : ''}">--%>
@@ -72,7 +76,12 @@
 <%--                    </ul>--%>
 <%--                </li>--%>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/register') ? 'active' : ''}" href="/registration/register">Register</a>
+                    <sec:authorize access="isAuthenticated()">
+                        <a class="nav-link ${page.endsWith('/registerEdit') ? 'active' : ''}" href="/registration/registerEdit">Edit Account</a>
+                    </sec:authorize>
+                    <sec:authorize access="!isAuthenticated()">
+                        <a class="nav-link ${page.endsWith('/register') ? 'active' : ''}" href="/registration/register">Register</a>
+                    </sec:authorize>
                 </li>
                 <li class="nav-item">
                     <sec:authorize access="isAuthenticated()">
@@ -83,7 +92,9 @@
                     </sec:authorize>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/profile') ? 'active' : ''}" href="/profile">Profile</a>
+                    <sec:authorize access="isAuthenticated()">
+                        <a class="nav-link ${page.endsWith('/profile') ? 'active' : ''}" href="/user/profile">Profile</a>
+                    </sec:authorize>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link ${page.endsWith('/userList/userList') ? 'active' : ''}" href="/userList">Search</a>
@@ -95,7 +106,7 @@
                     <a class="nav-link ${page.endsWith('/inputHistory') ? 'active' : ''}" href="/inputHistory">Entries</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/dataEntry') ? 'active' : ''}" href="/dataEntry">Record!</a>
+                    <a class="nav-link ${page.endsWith('/dataEntry') ? 'active' : ''}" href="/user/dataEntry">Record!</a>
                 </li>
             </ul>
         </div>

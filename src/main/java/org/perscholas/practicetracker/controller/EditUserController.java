@@ -13,25 +13,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/editUserList")
+@RequestMapping("/user")
 public class EditUserController {
     @Autowired
     private UserDAO userDao;
 
     public static final Logger LOG = LoggerFactory.getLogger(UserListController.class);
 
-    //if it is called without an id it will be a create
-    //if using id it will be an update
-    @RequestMapping(value = "/registerEdit", method = RequestMethod.GET) //!!!!!!!!Create a new page
+
+    @RequestMapping(value = "/registerEdit", method = RequestMethod.GET)
     public ModelAndView userList(@RequestParam(required = false) Integer id) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("register/register");
 
 
         if ( id != null) {
-            //id has been passed so it is an update
-            //prepopulates form so you can edit the current values
-           User user = userDao.findById(id);
+            User user = userDao.findById(id);
             RegisterFormBean form = new RegisterFormBean();
             form.setEmail(user.getEmail());
             form.setFirstName(user.getFirstName());
@@ -41,7 +38,7 @@ public class EditUserController {
             form.setConfirmPassword(user.getConfirmPassword());
             form.setId(user.getId());
 
-            response.addObject("form", form); //formbeankey in example
+            response.addObject("form", form);
 
         } else {
             //id has not been passed so it is a create

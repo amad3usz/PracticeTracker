@@ -50,10 +50,19 @@ public class RegisterFormBean {
     @NotEmpty
     private String DOB;
 
-    private String skillsPracticing;
+    private String[] skillsPracticing;
 
     @NotEmpty
-    private String profileImage;
+    private String profileIcon;
+
+//    @Column(name = "gender")
+//    private String gender;
+//
+//    @Column(name = "skills_practicing", columnDefinition="BLOB")
+//    private String[] skillsPracticing;
+//
+//    @Column(name = "profile_icon")
+//    private String profileIcon;
 
     private List<String> errorMessages = new ArrayList<>();
 

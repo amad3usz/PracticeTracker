@@ -26,6 +26,6 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
 
 //    don't really need
-    @Query("SELECT ur FROM UserRole ur WHERE ur.user.id = :userId")
+    @Query("SELECT ur FROM UserRole ur WHERE ur.id = :userId")
     List<UserRole> getUserRoles(Integer userId);
 }

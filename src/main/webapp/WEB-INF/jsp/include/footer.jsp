@@ -4,7 +4,7 @@
 <footer class="footer mt-auto py-1 fixed-bottom bg-light">
     <ul class="nav justify-content-center border-bottom pb-1 mb-1">
         <li class="nav-item">
-            <a href="/index" class="nav-link px-2 ${page.endsWith('/index') ? 'active' : ''}">Home</a>
+            <a href="/index" class="nav-link px-2 ${page.endsWith('/') ? 'active' : ''}">Home</a>
         </li>
         <li class="nav-item">
             <a href="/registration/register" class="nav-link px-2 ${page.endsWith('/registration/register') ? 'active' : ''}">Register</a>
@@ -28,7 +28,7 @@
             <a href="/dataEntry" class="nav-link px-2">Record!</a>
         </li>
     </ul>
-    <p class="text-center navbar-brand">© 2022 Practice Tracker</p>
+    <p class="text-center navbar-brand">&#169; 2022 Practice Tracker</p>
 </footer>
 </body>
 </html>

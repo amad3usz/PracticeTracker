@@ -37,9 +37,30 @@ public class User {
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "skills_practicing")
-    private String skillsPracticing;
+    @Column(name = "skills_practicing", columnDefinition="BLOB")
+    private String[] skillsPracticing;
 
     @Column(name = "profile_icon")
     private String profileIcon;
+
+    public String getGender() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        gender = gender;
+    }
+
+    public String[] getSkillsPracticing() {
+        return skillsPracticing;
+    }
+    public void setSkillsPracticing(String[] skillsPracticing) {
+        skillsPracticing = skillsPracticing;
+    }
+
+    public String getProfileIcon() {
+        return profileIcon;
+    }
+    public void setProfileIcon(String gender) {
+        profileIcon = profileIcon;
+    }
 }

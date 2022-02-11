@@ -1,18 +1,50 @@
 <jsp:include page="../include/header.jsp" />
-
+<div
+        class="modal fade"
+        id="FriendModal"
+        tabindex="-1"
+        aria-labelledby="friendModalLabel"
+        aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="friendModalLabel">Modal title</h5>
+                <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <p id="friendAddRemove"></p>
+            </div>
+            <div class="modal-footer">
+                <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <main>
     <div class="container">
-        <div id="title" class="h1">JohnDoe24</div>
+        <div id="title" class="h1">${user.username}</div>
         <div
                 id="content"
                 class="py-5 me-md-3 px-3 px-md-5 text-white overflow-hidden"
         >
             <div class="row">
                 <div class="col-sm text-center">
-                    <p class="h1">John Doe</p>
+                    <p class="h1">${user.firstName} ${user.lastName}</p>
                     <span class="fa-stack fa-5x">
                 <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-music fa-stack-1x text-black"></i>
+                <i class="fa ${user.profileIcon} fa-stack-1x text-black"></i>
               </span>
                 </div>
             </div>

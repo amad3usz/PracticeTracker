@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <jsp:include page="../include/header.jsp" />
 
 
@@ -10,11 +11,16 @@
         >
             <div class="row">
                 <div class="col-sm text-center">
-                    <p>You have successfully registered!</p>
-                    <p>
-                        Click
-                        <a href="/login">here</a> to login!
-                    </p>
+                        <sec:authorize access="isAuthenticated()">
+                            <p>You have successfully updated your account!</p>
+                        </sec:authorize>
+                        <sec:authorize access="!isAuthenticated()">
+                            <p>You have successfully registered!</p>
+                            <p>
+                                Click
+                                <a href="/login">here</a> to login!
+                            </p>
+                        </sec:authorize>
                 </div>
             </div>
         </div>

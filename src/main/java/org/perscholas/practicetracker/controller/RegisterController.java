@@ -1,14 +1,20 @@
 package org.perscholas.practicetracker.controller;
 
 import org.perscholas.practicetracker.database.dao.UserDAO;
+import org.perscholas.practicetracker.database.dao.UserRoleDAO;
 import org.perscholas.practicetracker.database.entity.User;
+import org.perscholas.practicetracker.database.entity.UserRole;
 import org.perscholas.practicetracker.registerForm.RegisterFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +33,14 @@ public class RegisterController {
     @Autowired
     private UserDAO userDao;
 
+    @Autowired
+    private UserRoleDAO userRoleDao;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @RequestMapping(value = { "/register" }, method = RequestMethod.GET)
-    public ModelAndView register() throws Exception {
+    public ModelAndView register(@RequestParam(required = false) Integer id) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("register/register");
         RegisterFormBean form = new RegisterFormBean();
@@ -36,7 +48,38 @@ public class RegisterController {
         return response;
     }
 
-    @RequestMapping(value = { "/registerSubmit" }, method = RequestMethod.GET)
+    @RequestMapping(value = "/registerEdit", method = RequestMethod.GET)
+    public ModelAndView userList(@RequestParam(required = false) Integer id) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("register/registerEdit");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+
+        User user = userDao.findByUsername(currentUserName);
+        response.addObject("user", user);
+
+        if ( user.getId() != null) {
+            RegisterFormBean form = new RegisterFormBean();
+            form.setEmail(user.getEmail());
+            form.setFirstName(user.getFirstName());
+            form.setLastName(user.getLastName());
+            form.setUsername(user.getUsername());
+            form.setPassword(user.getPassword());
+            form.setConfirmPassword(user.getConfirmPassword());
+            form.setId(user.getId());
+
+            response.addObject("form", form);
+
+        } else {
+            //id has not been passed so it is a create
+            RegisterFormBean form = new RegisterFormBean();
+            response.addObject("form", form);
+        }
+        return response;
+    }
+
+    @RequestMapping(value = { "/registerSubmit" }, method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult errors,
                                     HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -51,10 +94,10 @@ public class RegisterController {
         String DOB = form.getDOB();
         String []skillsPracticing = request.getParameterValues("skillsPracticing");
         String skillsPracticing2 = Arrays.toString(skillsPracticing);
-        String profileImage = form.getProfileImage();
+        String profileIcon = form.getProfileIcon();
 
         System.out.println(form); //from toString method in bean, formats the output to individual lines without having to assign each value to a variable
-        System.out.println(firstName + lastName + email + username + password + confirmPassword +  gender + DOB + skillsPracticing2 + profileImage);
+        System.out.println(firstName + lastName + email + username + password + confirmPassword +  gender + DOB + skillsPracticing2 + profileIcon);
 
         if (errors.hasErrors()) {
             for ( FieldError error : errors.getFieldErrors() ) {
@@ -81,24 +124,29 @@ public class RegisterController {
             user.setConfirmPassword(form.getConfirmPassword());
             user.setUsername(form.getUsername());
 
-            userDao.save(user);
-            //redirect to login page?
+
+            String encryptedPassword = passwordEncoder.encode(form.getPassword());
+            user.setPassword(encryptedPassword);
+
+//            UserRole userRole = userDao.findByUsername();
+//            userRole.setUserId(user);
+//            userRole.setUserRole("USER");
+            //saves new user, and will return a user object with id populated
+            //creates a new autoincremented id and returns object with new value
+            user = userDao.save(user);
+            if (form.getId() == null) {
+                UserRole userRole = new UserRole();
+
+                userRole.setUser(user);
+                userRole.setUserRole("USER");
+
+                userRoleDao.save(userRole);
+            }
+
+
+
             response.setViewName("register/registrationSuccess");
         }
-//        if (StringUtils.equals(username,"tom") && StringUtils.equals(password, "jerry")) {
-//            session.setAttribute(SESSION_KEY, form.getUsername());
-//            response.setViewName("redirect:/registrationSuccess");
-//            session.setAttribute(SESSION_ERROR_MESSAGE, null);
-//            session.setAttribute("username", username);
-//            response.addObject("loginusername", username); //cant set on the model for redirect
-//
-//        } else {
-//            session.setAttribute(SESSION_KEY, null);
-//            response.setViewName("redirect:/login");
-//
-//            session.setAttribute(SESSION_ERROR_MESSAGE, "Invalid Login");
-//        }
-
         return response;
     }
 

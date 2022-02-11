@@ -18,4 +18,11 @@ public class Session {
     @Column(name = "session_name")
     private String sessionName;
 
+    @Override
+    public String toString() {
+        return "Session{" +
+                "id=" + id +
+                ", sessionName='" + sessionName + '\'' +
+                '}';
+    }
 }
