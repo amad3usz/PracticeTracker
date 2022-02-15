@@ -9,4 +9,9 @@ import java.util.List;
 public interface SessionDAO extends JpaRepository<Session, Long> {
     @Query ("SELECT s FROM Session s")
     List<Session> getAllSessions();
+
+//    User findById(@Param("id") Integer id);
+
+
+//    Session findBySessionId(@Param("id") List<UserSession> id);
 }

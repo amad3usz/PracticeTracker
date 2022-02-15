@@ -1,18 +1,21 @@
-function addFriend() {
+function addFriend(id, number) {
     let stateOfFriend = ["ADDED", "REMOVED"];
     const add = "This person has been added to your list.";
     const remove = "This person has been removed from your list.";
+    var a = document.createElement('a')
 
-    if (document.getElementById("addFriend").innerText === "Add Friend") {
+    if (number === 0) {
         document.getElementById("addFriend").innerText = "Remove Friend";
         document.getElementById("friendAddRemove").innerHTML = add;
         document.getElementById("friendModalLabel").innerHTML = stateOfFriend[0];
+        window.location='/user/unfollow?id=' + id;
     } else if (
-        document.getElementById("addFriend").innerText === "Remove Friend"
+        number === 1
     ) {
         document.getElementById("addFriend").innerText = "Add Friend";
         document.getElementById("friendAddRemove").innerHTML = remove;
         document.getElementById("friendModalLabel").innerHTML = stateOfFriend[1];
+        window.location='/user/follow?id=' + id;
     }
 }
 

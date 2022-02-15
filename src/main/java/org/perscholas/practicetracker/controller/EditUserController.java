@@ -37,6 +37,10 @@ public class EditUserController {
             form.setPassword(user.getPassword());
             form.setConfirmPassword(user.getConfirmPassword());
             form.setId(user.getId());
+            form.setDOB(user.getDOB());
+            form.setGender(user.getGender());
+            form.setSkillsPracticing(user.getSkillsPracticing());
+            form.setProfileIcon(user.getProfileIcon());
 
             response.addObject("form", form);
 

@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../../../pub/css/styles.css" />
     <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
     />
     <script src="../../../pub/js/script.js"></script>
 </head>
@@ -93,17 +93,17 @@
                 </li>
                 <li class="nav-item">
                     <sec:authorize access="isAuthenticated()">
-                        <a class="nav-link ${page.endsWith('/profile') ? 'active' : ''}" href="/user/profile">Profile</a>
+                        <a class="nav-link ${page.endsWith('/profile') ? 'active' : ''}" href="/user/myProfile">Profile</a>
                     </sec:authorize>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/userList/userList') ? 'active' : ''}" href="/userList">Search</a>
+                    <a class="nav-link ${page.endsWith('/userList/userList') ? 'active' : ''}" href="/user/userList">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/following') ? 'active' : ''}" href="/followinglist">Following</a>
+                    <a class="nav-link ${page.endsWith('/following') ? 'active' : ''}" href="/user/followinglist">Following</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/inputHistory') ? 'active' : ''}" href="/inputHistory">Entries</a>
+                    <a class="nav-link ${page.endsWith('/inputHistory') ? 'active' : ''}" href="/user/inputHistory">Entries</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link ${page.endsWith('/dataEntry') ? 'active' : ''}" href="/user/dataEntry">Record!</a>

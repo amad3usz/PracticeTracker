@@ -12,17 +12,17 @@ import javax.persistence.*;
 public class Session {
 
     @Id
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "session_id")
+    public Integer sessionId;
 
-    @Column(name = "session_name")
-    private String sessionName;
+    @Column(name = "session_type")
+    public String sessionType;
 
     @Override
     public String toString() {
         return "Session{" +
-                "id=" + id +
-                ", sessionName='" + sessionName + '\'' +
+                "id=" + sessionId +
+                ", sessionName='" + sessionType + '\'' +
                 '}';
     }
 }

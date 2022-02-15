@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <jsp:include page="../include/header.jsp" />
 
 
@@ -9,257 +10,254 @@
                 id="content"
                 class="py-5 me-md-3 px-3 px-md-5 text-white overflow-hidden"
         >
-            <form class="row needs-validation" id="registerForm" method="GET" action="/registration/registerSubmit">
+            <form:form class="row needs-validation" id="registerForm" method="post" action="/registration/registerSubmit" modelAttribute="form">
                 <input type="hidden" name="id" value="${form.id}">
                 <div class="col-sm-4 mt-3">
                     <label for="firstName" class="form-label">First Name</label>
-                    <input
+                    <form:input
                             id="firstName"
                             type="text"
-                            name="firstName"
+                            path="firstName"
                             placeholder="Enter Your First Name"
                             pattern="^[A-Za-z]+$"
                             title="Must contain only uppercase and lowercase letters"
                             class="form-control"
-                            value="${form.firstName}"
-                            required
+                            required="true"
                     />
                 </div>
                 <div class="col-sm-4 mt-3">
                     <label for="lastName" class="form-label">Last Name</label>
-                    <input
+                    <form:input
                             id="lastName"
                             type="text"
-                            name="lastName"
+                            path="lastName"
                             placeholder="Enter Your Last Name"
                             pattern="^[A-Za-z]+$"
                             title="Must contain only uppercase and lowercase letters"
                             class="form-control"
-                            value="${form.lastName}"
-                            required
+                            required="true"
                     />
                 </div>
                 <div class="col-sm-4 mt-3">
                     <label for="email" class="form-label">Email</label>
-                    <input
+                    <form:input
                             id="email"
                             type="email"
-                            name="email"
+                            path="email"
                             placeholder="Enter Your Email"
                             class="form-control"
-                            value="${form.email}"
-                            required
+                            required="true"
                     />
+
                 </div>
                 <div class="col-sm-4 mt-3">
                     <label for="username" class="form-label">Username</label>
-                    <input
+                    <form:input
                             id="username"
                             type="text"
-                            name="username"
+                            path="username"
                             placeholder="Enter a Username with only letters and numbers"
                             pattern="^[A-Za-z0-9]{1,15}$"
                             title="Must only letters and numbers, and is at most 15 characters long"
                             class="form-control"
-                            value="${form.username}"
-                            required
+                            required="true"
                     />
                 </div>
                 <div class="col-sm-4 mt-3">
                     <label for="password" class="form-label">Password</label>
-                    <input
-                            id="password"
+                    <form:input
+                            id="Password"
                             type="password"
-                            name="password"
+                            path="password"
                             placeholder="Enter Your Password"
                             class="form-control"
-                            value="${form.password}"
-                            required
+                            required="true"
                     />
                 </div>
                 <div class="col-sm-4 mt-3">
                     <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <input
+                    <form:input
                             id="confirmPassword"
                             type="password"
-                            name="confirmPassword"
+                            path="confirmPassword"
                             placeholder="Confirm Your Password"
                             class="form-control"
-                            value="${form.confirmPassword}"
-                            required
+                            required="true"
                     />
                 </div>
 
                 <div class="col-6 col-sm-3 mt-3">
                     <label class="form-label">Gender</label>
                     <div class="form-check mx-3">
-                        <input
-                                type="radio"
+                        <form:radiobutton
+                                path="gender"
                                 id="female"
                                 name="gender"
                                 value="female"
                                 class="form-check-input"
-<%--                                value="${form.gender}"--%>
-                                required
+                                required="true"
                         />
                         <label for="female" class="form-check-label">Female</label>
                     </div>
                     <div class="form-check mx-3">
-                        <input
-                                type="radio"
+                        <form:radiobutton
+                                path="gender"
                                 id="male"
                                 name="gender"
                                 value="male"
                                 class="form-check-input"
-<%--                                value="${form.gender}"--%>
-                                required
+                                required="true"
                         />
                         <label for="male" class="form-check-label">Male</label>
                     </div>
                     <div class="form-check mx-3">
-                        <input
-                                type="radio"
+                        <form:radiobutton
+                                path="gender"
                                 id="non-binary"
                                 name="gender"
                                 value="non-binary"
                                 class="form-check-input"
-<%--                                value="${form.gender}"--%>
-                                required
+                                required="true"
                         />
                         <label for="non-binary" class="form-check-label"
                         >Non-Binary</label
                         >
                     </div>
                     <div class="form-check mx-3">
-                        <input
-                                type="radio"
-                                id="genderOther"
+                        <form:radiobutton
+                                path="gender"
+                                id="other"
                                 name="gender"
                                 value="other"
                                 class="form-check-input"
-                                required
+                                required="true"
                         />
-                        <label for="genderOther" class="form-check-label">Other</label>
+                        <label for="other" class="form-check-label">Other</label>
                     </div>
                 </div>
 
                 <div class="col-6 col-sm-3 mt-3">
                     <label for="DOB" class="form-label">Date of Birth</label>
-                    <input
+                    <form:input
+                            id="Date"
                             type="date"
-                            id="DOB"
-                            name="DOB"
-                            class="form-control"
-                            required
+                            cssClass="form-control form-control-lg"
+                            required="true"
+                            path="DOB"
                     />
                 </div>
 
                 <div class="col-6 col-sm-3 mt-3">
-                    <label class="form-label">Skills Practicing</label>
 
-                    <div class="form-check mx-3">
-                        <input
-                                type="checkbox"
-                                id="music"
-                                value="Music"
-                                name="skillsPracticing"
-                                class="form-check-input practice"
+
+<%--                    <div class="form-check mx-3">--%>
+    <label class="form-label">Skill Practicing</label>
+                        <form:input
+                                id="skillsPracticing"
+                                type="text"
+                                path="skillsPracticing"
+                                placeholder="Enter the skill you are practicing"
+                                class="form-control"
+                                required="true"
                         />
-                        <label for="music" class="form-check-label">Music</label>
-                    </div>
-                    <div class="form-check mx-3">
-                        <input
-                                type="checkbox"
-                                id="art"
-                                value="Art"
-                                name="skillsPracticing"
-                                class="form-check-input practice"
-                        />
-                        <label for="art" class="form-check-label">Art</label>
-                    </div>
-                    <div class="form-check mx-3">
-                        <input
-                                type="checkbox"
-                                id="writing"
-                                value="Writing"
-                                name="skillsPracticing"
-                                class="form-check-input practice"
-                        />
-                        <label for="writing" class="form-check-label">Writing</label>
-                    </div>
-                    <div class="form-check mx-3">
-                        <input
-                                type="checkbox"
-                                id="other"
-                                value="Other"
-                                name="skillsPracticing"
-                                class="form-check-input practice"
-                        />
-                        <label for="other" class="form-check-label">Other</label>
-                    </div>
-                    <input
-                            type="button"
-                            class="btn btn-primary btn-sm mb-1"
-                            onclick="selects()"
-                            value="Select All"
-                    />
-                    <input
-                            type="button"
-                            class="btn btn-primary btn-sm mb-1"
-                            onclick="deSelect()"
-                            value="Deselect All"
-                    />
+<%--                        <form:checkbox--%>
+<%--                                path="skillsPracticing"--%>
+<%--                                id="music"--%>
+<%--                                value="Music"--%>
+<%--                                name="skillsPracticing"--%>
+<%--                                class="form-check-input practice"--%>
+<%--                        />--%>
+<%--                        <label for="music" class="form-check-label">Music</label>--%>
+<%--                    </div>--%>
+<%--                    <div class="form-check mx-3">--%>
+<%--                        <form:checkbox--%>
+<%--                                path="skillsPracticing"--%>
+<%--                                id="art"--%>
+<%--                                value="Art"--%>
+<%--                                name="skillsPracticing"--%>
+<%--                                class="form-check-input practice"--%>
+<%--                        />--%>
+<%--                        <label for="art" class="form-check-label">Art</label>--%>
+<%--                    </div>--%>
+<%--                    <div class="form-check mx-3">--%>
+<%--                        <form:checkbox--%>
+<%--                                path="skillsPracticing"--%>
+<%--                                id="writing"--%>
+<%--                                value="Writing"--%>
+<%--                                name="skillsPracticing"--%>
+<%--                                class="form-check-input practice"--%>
+<%--                        />--%>
+<%--                        <label for="writing" class="form-check-label">Writing</label>--%>
+<%--                    </div>--%>
+<%--                    <div class="form-check mx-3">--%>
+<%--                        <form:checkbox--%>
+<%--                                path="skillsPracticing"--%>
+<%--                                id="other"--%>
+<%--                                value="Other"--%>
+<%--                                name="skillsPracticing"--%>
+<%--                                class="form-check-input practice"--%>
+<%--                        />--%>
+<%--                        <label for="other" class="form-check-label">Other</label>--%>
+<%--                    </div>--%>
+<%--                    <input--%>
+<%--                            type="button"--%>
+<%--                            class="btn btn-primary btn-sm mb-1"--%>
+<%--                            onclick="selects()"--%>
+<%--                            value="Select All"--%>
+<%--                    />--%>
+<%--                    <input--%>
+<%--                            type="button"--%>
+<%--                            class="btn btn-primary btn-sm mb-1"--%>
+<%--                            onclick="deSelect()"--%>
+<%--                            value="Deselect All"--%>
+<%--                    />--%>
                 </div>
 
                 <div class="col-6 col-sm-3 mt-3">
-                    <label class="form-label">Profile Image</label>
+                    <label class="form-label">Profile Icon</label>
                     <div class="form-check mx-3">
-                        <input
-                                type="radio"
+                        <form:radiobutton
+                                path="profileIcon"
                                 id="musicNote"
-                                name="profileImage"
-                                value="musicNote"
+                                value="fa-music"
                                 class="form-check-input"
-                                required
+                                required="true"
                         />
                         <label for="musicNote" class="form-check-label"
                         >Music Note <i class="fa fa-music"></i
                         ></label>
                     </div>
                     <div class="form-check mx-3">
-                        <input
-                                type="radio"
-                                id="paintbrush"
-                                name="profileImage"
-                                value="paintbrush"
+                        <form:radiobutton
+                                path="profileIcon"
+                                id="paint-brush"
+                                value="fa-paint-brush"
                                 class="form-check-input"
-                                required
+                                required="true"
                         />
-                        <label for="paintbrush" class="form-check-label"
+                        <label for="paint-brush" class="form-check-label"
                         >Paintbrush <i class="fa fa-paint-brush"></i
                         ></label>
                     </div>
                     <div class="form-check mx-3">
-                        <input
-                                type="radio"
+                        <form:radiobutton
+                                path="profileIcon"
                                 id="Laptop"
-                                name="profileImage"
-                                value="Laptop"
+                                value="fa-laptop"
                                 class="form-check-input"
-                                required
+                                required="true"
                         />
                         <label for="Laptop" class="form-check-label"
                         >Laptop <i class="fa fa-laptop"></i
                         ></label>
                     </div>
                     <div class="form-check mx-3">
-                        <input
-                                type="radio"
+                        <form:radiobutton
+                                path="profileIcon"
                                 id="pencil"
-                                name="profileImage"
-                                value="pencil"
+                                value="fa-pencil"
                                 class="form-check-input"
-                                required
+                                required="true"
                         />
                         <label for="pencil" class="form-check-label"
                         >Pencil <i class="fa fa-pencil"></i
@@ -274,7 +272,7 @@
                         <button class="btn btn-primary" type="submit">Register</button>
                     </div>
                 </div>
-            </form>
+            </form:form>
             <br />
             <div class="row">
                 <div class="col-sm text-center">

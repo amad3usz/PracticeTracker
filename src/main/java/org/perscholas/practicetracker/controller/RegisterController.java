@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,15 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.Arrays;
 
 
 @Controller
 @RequestMapping("/registration")
 public class RegisterController {
-
-//    private static String SESSION_KEY = "usernameSessionKey";
-//    private static String SESSION_ERROR_MESSAGE = "errorMessageKey";
 
     @Autowired
     private UserDAO userDao;
@@ -40,10 +37,14 @@ public class RegisterController {
     private PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = { "/register" }, method = RequestMethod.GET)
-    public ModelAndView register(@RequestParam(required = false) Integer id) throws Exception {
+    public ModelAndView register(@RequestParam(required = false) Integer id, @ModelAttribute("form") @Valid RegisterFormBean form, BindingResult errors) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("register/register");
-        RegisterFormBean form = new RegisterFormBean();
+        for ( FieldError error : errors.getFieldErrors() ) {
+            form.getErrorMessages().add(error.getDefaultMessage());
+            System.out.println("error field = " + error.getField() + " message = " + error.getDefaultMessage());
+        }
+        form = new RegisterFormBean();
         response.addObject("form", form);
         return response;
     }
@@ -67,6 +68,10 @@ public class RegisterController {
             form.setUsername(user.getUsername());
             form.setPassword(user.getPassword());
             form.setConfirmPassword(user.getConfirmPassword());
+            form.setDOB(user.getDOB());
+            form.setGender(user.getGender());
+            form.setSkillsPracticing(user.getSkillsPracticing());
+            form.setProfileIcon(user.getProfileIcon());
             form.setId(user.getId());
 
             response.addObject("form", form);
@@ -80,8 +85,8 @@ public class RegisterController {
     }
 
     @RequestMapping(value = { "/registerSubmit" }, method = {RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult errors,
-                                    HttpServletRequest request, HttpSession session) throws Exception {
+    public ModelAndView registerSubmit(@ModelAttribute("form") @Valid RegisterFormBean form, BindingResult errors,
+                                       HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
 
         String firstName = form.getFirstName();
@@ -92,12 +97,12 @@ public class RegisterController {
         String confirmPassword = form.getConfirmPassword();
         String gender = form.getGender();
         String DOB = form.getDOB();
-        String []skillsPracticing = request.getParameterValues("skillsPracticing");
-        String skillsPracticing2 = Arrays.toString(skillsPracticing);
+//        String []skillsPracticing = request.getParameterValues("skillsPracticing");
+//        String skillsPracticing2 = Arrays.toString(skillsPracticing);
         String profileIcon = form.getProfileIcon();
 
         System.out.println(form); //from toString method in bean, formats the output to individual lines without having to assign each value to a variable
-        System.out.println(firstName + lastName + email + username + password + confirmPassword +  gender + DOB + skillsPracticing2 + profileIcon);
+        System.out.println(firstName + lastName + email + username + password + confirmPassword +  gender + DOB + profileIcon);
 
         if (errors.hasErrors()) {
             for ( FieldError error : errors.getFieldErrors() ) {
@@ -120,14 +125,16 @@ public class RegisterController {
             user.setEmail(form.getEmail());
             user.setFirstName(form.getFirstName());
             user.setLastName(form.getLastName());
-            user.setPassword(form.getPassword());
-            user.setConfirmPassword(form.getConfirmPassword());
             user.setUsername(form.getUsername());
+            user.setDOB(form.getDOB());
+            user.setGender(form.getGender());
+            user.setSkillsPracticing(String.valueOf(form.getSkillsPracticing()));
+            user.setProfileIcon(form.getProfileIcon());
 
 
             String encryptedPassword = passwordEncoder.encode(form.getPassword());
             user.setPassword(encryptedPassword);
-
+            user.setConfirmPassword(encryptedPassword);
 //            UserRole userRole = userDao.findByUsername();
 //            userRole.setUserId(user);
 //            userRole.setUserRole("USER");

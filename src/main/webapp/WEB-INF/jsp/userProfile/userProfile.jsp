@@ -1,4 +1,5 @@
-<jsp:include page="../include/header.jsp" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../include/header.jsp"/>
 <div
         class="modal fade"
         id="FriendModal"
@@ -50,24 +51,57 @@
             </div>
             <div class="row">
                 <div class="col-sm h3">
-                    I'm currently working on...<br />
-                    <ul>
-                        <li>Music</li>
-                        <li>Writing</li>
-                    </ul>
+                    I'm currently working on...<br/>
+                    ${user.skillsPracticing}
                 </div>
                 <div class="col-sm h3 text-center">
-                    Add Me!<br />
-                    <button
-                            id="addFriend"
-                            onclick="addFriend()"
-                            class="btn btn-primary"
-                            type="submit"
-                            data-bs-toggle="modal"
-                            data-bs-target="#FriendModal"
-                    >
-                        Add Friend
-                    </button>
+                    <%--                    Add Me!<br />--%>
+                    <%--                    <button--%>
+                    <%--                            id="addFriend"--%>
+                    <%--                            onclick="addFriend(${user.id},--%>
+                    <%--                            <c:choose>--%>
+                    <%--                            <c:when test="${exists}">--%>
+                    <%--                                    1--%>
+                    <%--                            </c:when>--%>
+                    <%--                            <c:otherwise>--%>
+                    <%--                                    0--%>
+                    <%--                            </c:otherwise>--%>
+                    <%--                            </c:choose>)"--%>
+                    <%--                            class="btn btn-primary"--%>
+                    <%--                            type="submit"--%>
+                    <%--                            data-bs-toggle="modal"--%>
+                    <%--                            data-bs-target="#FriendModal"--%>
+                    <%--                    >--%>
+                    <%--                        <c:choose>--%>
+                    <%--                        <c:when test="${exists}">--%>
+                    <%--                            Unfollow--%>
+                    <%--                        </c:when>--%>
+                    <%--                        <c:otherwise>--%>
+                    <%--                            Follow--%>
+                    <%--                        </c:otherwise>--%>
+                    <%--                        </c:choose>--%>
+                    <%--                    </button>--%>
+
+                    <c:choose>
+                        <c:when test="${exists}">
+                            Following<br/>
+                        </c:when>
+                        <c:otherwise>
+                            Not Following<br/>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${exists}">
+                            <a href="/user/unfollow?id=${user.id}">
+                                <i class="fa-solid fa-user-minus text-black"></i></a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/user/follow?id=${user.id}">
+                                <i class="fa fa-user-plus text-black"></i></a>
+                        </c:otherwise>
+                    </c:choose>
+
+
                 </div>
             </div>
             <div class="row">
@@ -84,21 +118,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr style="background-color: #6a994e !important">
-                            <td>1/3/22</td>
-                            <td colspan="3">Bach Partita No. 3 - Bouree</td>
-                            <td>96 minutes</td>
-                        </tr>
-                        <tr>
-                            <td>1/2/22</td>
-                            <td colspan="3">Mendelssohn Violin Concerto - 1st Mov.</td>
-                            <td>134 minutes</td>
-                        </tr>
-                        <tr>
-                            <td>1/1/22</td>
-                            <td colspan="3">Paganini Caprice No. 24</td>
-                            <td>47 minutes</td>
-                        </tr>
+                        <c:forEach begin="0" end="2" items="${userSession}" var="userSession">
+                            <tr style="background-color: #6a994e !important">
+                                <td>${userSession.date}</td>
+                                <td colspan="3">${userSession.sessionName}</td>
+                                <td>${userSession.time} minutes</td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -107,4 +133,4 @@
     </div>
 </main>
 
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../include/footer.jsp"/>

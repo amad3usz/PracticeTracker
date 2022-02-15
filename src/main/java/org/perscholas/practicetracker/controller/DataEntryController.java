@@ -11,11 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -33,50 +32,59 @@ public class DataEntryController {
     @RequestMapping(value = "/user/dataEntry", method = RequestMethod.GET)
     public ModelAndView dataEntry(@ModelAttribute("form") @Valid DataEntryFormBean form,
                                   @ModelAttribute("session") @Valid DataEntryFormBean session) throws Exception {
-
-//        BindingResult resultForm, BindingResult resultSession
-
         ModelAndView response = new ModelAndView();
         response.setViewName("dataEntry/dataEntry");
-
-
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
 
-//        Session session = sessionDao.findByUsername(currentUserName);
-
         List<Session> allSession = sessionDao.getAllSessions();
         response.addObject("session", allSession);
+
         User user = userDao.findByUsername(currentUserName);
         List<UserSession> userSessions = userSessionDao.findByUserId(user.getId());
         response.addObject("userSession", userSessions);
+
         form = new DataEntryFormBean();
         response.addObject("form", form);
+
         System.out.println(allSession);
-
-
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentUserName = authentication.getName();
-//        UserSession userSession = new UserSession();
-//        User user = userDao.findByUsername(currentUserName);
-////        response.addObject("user", user);
-////        if (userSession.getId() == null) {
-////            userSession = new UserSession();
-////        } else {
-////            userSession = userSessionDao.findById(entry.getId());
-////        }
-////        userSession =
-//
-//
-//        userSession.setUserId(user.getId());
-//        userSession.setSessionName(form.getSessionName());
-////        userSession.setNotes(form.getNotes());
-//        System.out.println(userSession);
-//        userSessionDao.save(userSession);
 
         return response;
 
+    }
+
+
+
+    @RequestMapping(value = "/user/dataEntryEdit", method = {RequestMethod.GET})
+    public ModelAndView dataEntryEdit(@ModelAttribute("form") @Valid DataEntryFormBean form, @RequestParam(required = false) Integer id) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("dataEntry/dataEntryEdit");
+        form = new DataEntryFormBean();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+
+        List<Session> allSession = sessionDao.getAllSessions();
+        response.addObject("session", allSession);
+
+        User user = userDao.findByUsername(currentUserName);
+        List<UserSession> userSessions = userSessionDao.findByUserId(user.getId());
+        response.addObject("userSession", userSessions);
+
+        UserSession userSession = userSessionDao.findById(id);
+
+        form.setUserId(userSession.getId());
+        form.setSessionName(userSession.getSessionName());
+        form.setDate(userSession.getDate());
+        form.setSessionId(userSession.getSessionId());
+        form.setTime(userSession.getTime());
+        form.setRating(userSession.getRating());
+        form.setNotes(userSession.getNotes());
+        System.out.println(userSession);
+        userSessionDao.save(userSession);
+        response.addObject("form", form);
+        return response;
     }
 
     @RequestMapping(value = "/user/dataEntrySubmit", method = {RequestMethod.POST, RequestMethod.GET})
@@ -88,26 +96,24 @@ public class DataEntryController {
         String currentUserName = authentication.getName();
         UserSession userSession = new UserSession();
         User user = userDao.findByUsername(currentUserName);
-//        response.addObject("user", user);
-//        if (userSession.getId() == null) {
-//            userSession = new UserSession();
-//        } else {
-//            userSession = userSessionDao.findById(entry.getId());
-//        }
-//        userSession =
-
 
         userSession.setUserId(user.getId());
         userSession.setSessionName(form.getSessionName());
         userSession.setDate(form.getDate());
         userSession.setSessionId(form.getSessionId());
-
         userSession.setTime(form.getTime());
         userSession.setRating(form.getRating());
         userSession.setNotes(form.getNotes());
         System.out.println(userSession);
         userSessionDao.save(userSession);
+        response.setViewName("dataEntry/dataEntrySuccess");
+        return response;
+    }
 
+    @RequestMapping(value = "user/dataEntrySuccess", method = RequestMethod.GET)
+    public ModelAndView success(HttpSession session) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("dataEntry/dataEntrySuccess");
         return response;
     }
 

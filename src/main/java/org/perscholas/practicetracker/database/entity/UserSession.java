@@ -30,6 +30,7 @@ public class UserSession {
     @Column(name = "rating")
     private Integer rating;
 
+
     @Column(name = "session_name")
     private String sessionName;
 
@@ -38,6 +39,10 @@ public class UserSession {
 
     @Column(name = "time")
     private Integer time;
+
+//    @OneToOne
+//    @JoinColumn(name = "FK_userSession_session")
+
 
     @Override
     public String toString() {

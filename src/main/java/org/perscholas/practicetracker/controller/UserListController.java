@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/userList")
+@RequestMapping("/user")
 public class UserListController {
     @Autowired
     private UserDAO userDao;

@@ -50,7 +50,7 @@ public class RegisterFormBean {
     @NotEmpty
     private String DOB;
 
-    private String[] skillsPracticing;
+    private String skillsPracticing;
 
     @NotEmpty
     private String profileIcon;

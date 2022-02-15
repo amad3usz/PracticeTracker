@@ -11,10 +11,15 @@ public interface UserSessionDAO extends JpaRepository<UserSession, Long> {
 
     UserSession findById(@Param("id") Integer id);
 
-    //@Query ("SELECT s FROM Session s")
     @Query("SELECT us FROM UserSession us WHERE us.userId = :userId")
     List<UserSession> findByUserId(@Param("userId") Integer userId);
 
-//        UserSession findByUsername(@Param("username") String username);
+    List<UserSession> findByUserIdOrderByDateDesc(@Param("userId") Integer userId);
+
+    UserSession findBySessionId(Integer id);
+
+    @Query(value = "SELECT us, s from UserSession us Left Join Session s ON us.sessionId = s.sessionId Where us.userId = :userId ")
+    public List <UserSession> FindAllWithDescriptionQueryOrderByUserIdOrderByDateDesc(@Param("userId") Integer userId);
+
 
 }

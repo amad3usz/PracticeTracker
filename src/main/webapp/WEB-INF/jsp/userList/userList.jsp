@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-sm text-center">
 
-                    <form method="get" action="/userList/userList">
+                    <form method="get" action="/user/userList">
                         <input type="text" name="search" value="${searchInput}">
                         <button type="submit">Search</button>
                     </form>
@@ -22,23 +22,17 @@
 <%--                            not sure what to do here to not show this if the resulting --%>
                             <table>
                                 <tr>
-                                    <td><b>Id</b></td>
                                     <td><b>Username</b></td>
-                                    <td><b>Email</b></td>
                                     <td><b>First Name</b></td>
                                     <td><b>Last Name</b></td>
-                                    <td><b>Password</b></td>
-                                    <td><b>Password</b></td>
                                 </tr>
                                 <c:forEach items="${userListKey}" var="user">
                                     <tr>
-                                        <td>${user.id}</td>
+
                                         <td>${user.username}</td>
-                                        <td>${user.email}</td>
                                         <td>${user.firstName}</td>
                                         <td>${user.lastName}</td>
-                                        <td>${user.password}</td>
-                                        <td><a href="/editUserList/registerEdit?id=${user.id}">Edit</a></td>
+                                        <td><a href="/user/profile?id=${user.id}">Edit</a></td>
                                     </tr>
 
                                 </c:forEach>

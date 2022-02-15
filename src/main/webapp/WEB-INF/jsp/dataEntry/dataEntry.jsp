@@ -41,7 +41,7 @@
 
                             >
                         <c:forEach items="${session}" var="s">
-                            <form:option value="${s.id}" label="${s.sessionName}"/>
+                            <form:option value="${s.sessionId}" label="${s.sessionType}"/>
                         </c:forEach>
                         </form:select>
 
@@ -62,6 +62,7 @@
                                     name="mySession"
                                     path="sessionName"
                             ></label>
+                        <form:option value="" label=""/>
                             <c:if test="${ not empty userSession}">
                             <c:forEach items="${userSession}" var="us">
                                 <form:option value="${us.sessionName}" label="${us.sessionName}"/>
