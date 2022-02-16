@@ -20,6 +20,7 @@ import java.util.List;
 
 @Controller
 public class DataEntryController {
+
     @Autowired
     private SessionDAO sessionDao;
 
@@ -69,12 +70,13 @@ public class DataEntryController {
         response.addObject("session", allSession);
 
         User user = userDao.findByUsername(currentUserName);
-        List<UserSession> userSessions = userSessionDao.findByUserId(user.getId());
-        response.addObject("userSession", userSessions);
+//        List<UserSession> userSessions = userSessionDao.findByUserId(user.getId());
+//        response.addObject("userSession", userSession);
 
         UserSession userSession = userSessionDao.findById(id);
-
-        form.setUserId(userSession.getId());
+        response.addObject("userSession", userSession);
+        form.setId(userSession.getId());
+        form.setUserId(userSession.getUserId());
         form.setSessionName(userSession.getSessionName());
         form.setDate(userSession.getDate());
         form.setSessionId(userSession.getSessionId());
@@ -88,7 +90,7 @@ public class DataEntryController {
     }
 
     @RequestMapping(value = "/user/dataEntrySubmit", method = {RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView dataEntrySubmit(@ModelAttribute("form") @Valid DataEntryFormBean form) throws Exception {
+    public ModelAndView dataEntrySubmit(@ModelAttribute("form") @Valid DataEntryFormBean form, @RequestParam(required = false) Integer id) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("dataEntry/dataEntry");
 
@@ -97,6 +99,7 @@ public class DataEntryController {
         UserSession userSession = new UserSession();
         User user = userDao.findByUsername(currentUserName);
 
+        userSession.setId(form.getId());
         userSession.setUserId(user.getId());
         userSession.setSessionName(form.getSessionName());
         userSession.setDate(form.getDate());

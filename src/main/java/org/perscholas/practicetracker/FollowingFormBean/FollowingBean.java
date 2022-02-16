@@ -9,6 +9,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @Setter
 public class FollowingBean {
 
+    private Integer id;
+
     private Integer userId;
 
     private Integer followingId;

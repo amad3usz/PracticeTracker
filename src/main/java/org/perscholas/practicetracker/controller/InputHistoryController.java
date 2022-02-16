@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class InputHistoryController {
@@ -41,13 +42,18 @@ public class InputHistoryController {
         String currentUserName = authentication.getName();
 
         User user = userDao.findByUsername(currentUserName);
-        List<UserSession> userSessions = userSessionDao.FindAllWithDescriptionQueryOrderByUserIdOrderByDateDesc(user.getId());
-        response.addObject("userSession", userSessions);
+//        List<UserSession> userSessions = userSessionDao.findByUserIdOrderByDateDesc(user.getId());
+////        List<UserSession> userSessions = userSessionDao.FindAllWithDescriptionQuery(user.getId());
+//        response.addObject("userSession", userSessions);
 
+
+        List<Map<String,Object>> userSessions2 = userSessionDao.findAllWithDescriptionQuery(user.getId());
+        response.addObject("userSession", userSessions2);
         // NEED TO FIGURE OUT HOW TO PULL SESSION NAME FROM SESSIONS TABLE USING USERSESSION SESSION_ID
 //        Session sessionType = sessionDao.findBySessionId(userSessions);
 //        response.addObject("sessionType", sessionType);
 
+//        FindAllWithDescriptionQuery
         return response;
 
     }

@@ -15,7 +15,7 @@
 
             <form:form method="POST" action="/user/dataEntrySubmit" modelAttribute="form">
                 <%--                modelAttribute="form" modelAttribute="session"--%>
-                <%--                <input type="hidden" name="id" value="${form.userId}">--%>
+                                <form:hidden path="id" value="${userSession.id}" />
                 <div class="form-group row">
                     <div class="col-lg">
                         <label for="Date" class="form-label">Date of Session:
@@ -41,7 +41,7 @@
 
                         >
                             <c:forEach items="${session}" var="s">
-                                <form:option value="${s.sessionId}" label="${s.sessionName}"/>
+                                <form:option value="${s.sessionId}" label="${s.sessionType}"/>
                             </c:forEach>
                         </form:select>
 
@@ -55,35 +55,34 @@
                             <%--                        </datalist>--%>
                     </div>
                     <div class="col-lg">
-                        <label
-                        >Pick Previous Session:
-                            <form:select
-                                    class="form-control form-control-lg dropdown"
-                                    name="mySession"
-                                    path="sessionName"
-                            ></label>
-                        <form:option value="${us.sessionName}" label="${us.sessionName}"/>
-                        <c:if test="${ not empty userSession}">
-                            <c:forEach items="${userSession}" var="us">
-                                <form:option value="${us.sessionName}" label="${us.sessionName}"/>
-                            </c:forEach>
-                        </c:if>
-                        <form:input
-                                id="newSession"
-                                type="text"
-                                cssClass="form-control form-control-lg"
-                                path="sessionName"
-                        />
-                        </form:select>
-                        <div class="text-center">or</div>
 <%--                        <label--%>
-<%--                        >Name of New Session:--%>
-<%--                            <form:input--%>
-<%--                                    id="newSession"--%>
-<%--                                    type="text"--%>
-<%--                                    cssClass="form-control form-control-lg"--%>
+<%--                        >Pick Previous Session:--%>
+<%--                            <form:select--%>
+<%--                                    class="form-control form-control-lg dropdown"--%>
+<%--                                    name="mySession"--%>
 <%--                                    path="sessionName"--%>
-<%--                            /></label>--%>
+<%--                            ></label>--%>
+<%--                        <form:option value="" label="${us.sessionName}"/>--%>
+<%--                        <c:if test="${ not empty userSession}">--%>
+<%--                            <c:forEach items="${userSession}" var="us">--%>
+<%--                                <form:option value="${us.sessionName}" label="${us.sessionName}"/>--%>
+<%--                            </c:forEach>--%>
+<%--                        </c:if>--%>
+<%--                        <form:input--%>
+<%--                                id="newSession"--%>
+<%--                                type="text"--%>
+<%--                                cssClass="form-control form-control-lg"--%>
+<%--                                path="sessionName"--%>
+<%--                        /></label>--%>
+<%--                        </form:select>--%>
+                        <label
+                        >Name of New Session:
+                            <form:input
+                                    id="newSession"
+                                    type="text"
+                                    cssClass="form-control form-control-lg"
+                                    path="sessionName"
+                            /></label>
                         </datalist>
                     </div>
                     <div class="col-lg">

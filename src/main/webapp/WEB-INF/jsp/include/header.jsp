@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Practice Tracker</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -54,27 +54,6 @@
                     <a class="nav-link ${page.endsWith('/') ? 'active' : ''} ${page.endsWith('/index') ? 'active' : ''}" aria-current="page" href="/index"
                     >Home</a>
                 </li>
-<%--                <li class="nav-item dropdown ${page.endsWith('/register' || '/login' || '/profile') ? 'active' : ''}">--%>
-<%--                    <a--%>
-<%--                            class="nav-link dropdown-toggle "--%>
-<%--                            href="#"--%>
-<%--                            id="navbarDropdown"--%>
-<%--                            role="button"--%>
-<%--                            data-bs-toggle="dropdown"--%>
-<%--                            aria-expanded="false"--%>
-<%--                    >--%>
-<%--                        My Account--%>
-<%--                    </a>--%>
-<%--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">--%>
-<%--                        <li>--%>
-<%--                            <a class="dropdown-item ${page.endsWith('/register') ? 'active' : ''}" href="/registration/register">Register</a>--%>
-<%--                        </li>--%>
-<%--                        <li><a class="dropdown-item ${page.endsWith('/login') ? 'active' : ''}" href="/login">Login</a></li>--%>
-<%--                        <li>--%>
-<%--                            <a class="dropdown-item ${page.endsWith('/profile') ? 'active' : ''}" href="/profile">My Profile</a>--%>
-<%--                        </li>--%>
-<%--                    </ul>--%>
-<%--                </li>--%>
                 <li class="nav-item">
                     <sec:authorize access="isAuthenticated()">
                         <a class="nav-link ${page.endsWith('/registerEdit') ? 'active' : ''}" href="/registration/registerEdit">Edit Account</a>
@@ -97,16 +76,24 @@
                     </sec:authorize>
                 </li>
                 <li class="nav-item">
+                    <sec:authorize access="isAuthenticated()">
                     <a class="nav-link ${page.endsWith('/userList/userList') ? 'active' : ''}" href="/user/userList">Search</a>
+                    </sec:authorize>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${page.endsWith('/following') ? 'active' : ''}" href="/user/followinglist">Following</a>
+                    <sec:authorize access="isAuthenticated()">
+                    <a class="nav-link ${page.endsWith('/following') ? 'active' : ''}" href="/user/followingList">Following</a>
+                    </sec:authorize>
                 </li>
                 <li class="nav-item">
+                    <sec:authorize access="isAuthenticated()">
                     <a class="nav-link ${page.endsWith('/inputHistory') ? 'active' : ''}" href="/user/inputHistory">Entries</a>
+                    </sec:authorize>
                 </li>
                 <li class="nav-item">
+                    <sec:authorize access="isAuthenticated()">
                     <a class="nav-link ${page.endsWith('/dataEntry') ? 'active' : ''}" href="/user/dataEntry">Record!</a>
+                    </sec:authorize>
                 </li>
             </ul>
         </div>

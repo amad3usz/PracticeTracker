@@ -16,11 +16,18 @@ public class Following {
     @Column(name = "id")
     private Integer id;
 
-//    @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private Integer userId;
 
     @JoinColumn(name = "following_id")
     private Integer followingId;
 
+    @Override
+    public String toString() {
+        return "Following{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", followingId=" + followingId +
+                '}';
+    }
 }

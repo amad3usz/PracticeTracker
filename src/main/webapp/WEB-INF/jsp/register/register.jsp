@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="../include/header.jsp"/>
 
 
 <main>
@@ -10,7 +10,8 @@
                 id="content"
                 class="py-5 me-md-3 px-3 px-md-5 text-white overflow-hidden"
         >
-            <form:form class="row needs-validation" id="registerForm" method="post" action="/registration/registerSubmit" modelAttribute="form">
+            <form:form class="row needs-validation" id="registerForm" method="post"
+                       action="/registration/registerSubmit" modelAttribute="form">
                 <input type="hidden" name="id" value="${form.id}">
                 <div class="col-sm-4 mt-3">
                     <label for="firstName" class="form-label">First Name</label>
@@ -149,68 +150,15 @@
 
                 <div class="col-6 col-sm-3 mt-3">
 
-
-<%--                    <div class="form-check mx-3">--%>
-    <label class="form-label">Skill Practicing</label>
-                        <form:input
-                                id="skillsPracticing"
-                                type="text"
-                                path="skillsPracticing"
-                                placeholder="Enter the skill you are practicing"
-                                class="form-control"
-                                required="true"
-                        />
-<%--                        <form:checkbox--%>
-<%--                                path="skillsPracticing"--%>
-<%--                                id="music"--%>
-<%--                                value="Music"--%>
-<%--                                name="skillsPracticing"--%>
-<%--                                class="form-check-input practice"--%>
-<%--                        />--%>
-<%--                        <label for="music" class="form-check-label">Music</label>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-check mx-3">--%>
-<%--                        <form:checkbox--%>
-<%--                                path="skillsPracticing"--%>
-<%--                                id="art"--%>
-<%--                                value="Art"--%>
-<%--                                name="skillsPracticing"--%>
-<%--                                class="form-check-input practice"--%>
-<%--                        />--%>
-<%--                        <label for="art" class="form-check-label">Art</label>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-check mx-3">--%>
-<%--                        <form:checkbox--%>
-<%--                                path="skillsPracticing"--%>
-<%--                                id="writing"--%>
-<%--                                value="Writing"--%>
-<%--                                name="skillsPracticing"--%>
-<%--                                class="form-check-input practice"--%>
-<%--                        />--%>
-<%--                        <label for="writing" class="form-check-label">Writing</label>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-check mx-3">--%>
-<%--                        <form:checkbox--%>
-<%--                                path="skillsPracticing"--%>
-<%--                                id="other"--%>
-<%--                                value="Other"--%>
-<%--                                name="skillsPracticing"--%>
-<%--                                class="form-check-input practice"--%>
-<%--                        />--%>
-<%--                        <label for="other" class="form-check-label">Other</label>--%>
-<%--                    </div>--%>
-<%--                    <input--%>
-<%--                            type="button"--%>
-<%--                            class="btn btn-primary btn-sm mb-1"--%>
-<%--                            onclick="selects()"--%>
-<%--                            value="Select All"--%>
-<%--                    />--%>
-<%--                    <input--%>
-<%--                            type="button"--%>
-<%--                            class="btn btn-primary btn-sm mb-1"--%>
-<%--                            onclick="deSelect()"--%>
-<%--                            value="Deselect All"--%>
-<%--                    />--%>
+                    <label class="form-label">Skill Practicing</label>
+                    <form:input
+                            id="skillsPracticing"
+                            type="text"
+                            path="skillsPracticing"
+                            placeholder="Enter the skill(s) you are practicing"
+                            class="form-control"
+                            required="true"
+                    />
                 </div>
 
                 <div class="col-6 col-sm-3 mt-3">
@@ -267,18 +215,18 @@
                 <div class="row mt-3">
                     <div class="col-sm text-center">
                         <c:forEach var="message" items="${form.errorMessages}" varStatus="status">
-                            <span style="color:red">${message}</span><br />
+                            <span style="color:red">${message}</span><br/>
                         </c:forEach>
                         <button class="btn btn-primary" type="submit">Register</button>
                     </div>
                 </div>
             </form:form>
-            <br />
+            <br/>
             <div class="row">
                 <div class="col-sm text-center">
                     <p>
                         Already a registered user? Click
-                        <a href="/login.html">here</a> to login!
+                        <a href="/login/login">here</a> to login!
                     </p>
                 </div>
             </div>
@@ -287,4 +235,4 @@
 </main>
 
 
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../include/footer.jsp"/>

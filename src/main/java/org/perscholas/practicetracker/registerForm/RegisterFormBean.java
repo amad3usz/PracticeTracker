@@ -31,7 +31,6 @@ public class RegisterFormBean {
 
     @NotEmpty(message = "Email is required")
     @Pattern(regexp = "^.+@.+$" , message = "Invalid email format")
-//    @EmailUnique(message = "Email must be unique")
     private String email;
 
     @NotEmpty (message = "Username is required")
@@ -50,19 +49,11 @@ public class RegisterFormBean {
     @NotEmpty
     private String DOB;
 
+    @NotEmpty
     private String skillsPracticing;
 
     @NotEmpty
     private String profileIcon;
-
-//    @Column(name = "gender")
-//    private String gender;
-//
-//    @Column(name = "skills_practicing", columnDefinition="BLOB")
-//    private String[] skillsPracticing;
-//
-//    @Column(name = "profile_icon")
-//    private String profileIcon;
 
     private List<String> errorMessages = new ArrayList<>();
 

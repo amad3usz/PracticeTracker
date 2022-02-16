@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class FollowingController {
@@ -32,14 +33,31 @@ public class FollowingController {
     @Autowired
     private UserSessionDAO userSessionDao;
 
-    @RequestMapping(value = "/user/follow", method = {RequestMethod.POST, RequestMethod.GET})
+
+    @RequestMapping(value = "/user/followingList", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView followingList() {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("followingList/followingList");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+
+        User user = userDao.findByUsername(currentUserName);
+        response.addObject("user", user);
+
+        List<Map<String,Object>> following = followingDao.findAllWithDescriptionQuery(user.getId());
+        response.addObject("following", following);
+
+        return response;
+    }
+
+
+        @RequestMapping(value = "/user/follow", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView follow(@ModelAttribute("following") @Valid FollowingBean followingBean, @RequestParam(required = false) Integer id) {
-
-
-        System.out.println(id);
         ModelAndView response = new ModelAndView();
         String url = "redirect:/user/profile?id=" + id;
         response.setViewName(url);
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
         User user = userDao.findByUsername(currentUserName);
@@ -63,13 +81,6 @@ public class FollowingController {
             response.addObject("exists", follow);
             followingDao.save(following);
         }
-//        if (exists != null) {
-//
-//        }
-//        if (exists == null) {
-//            boolean follow = false;
-//            response.addObject("exists", follow);
-//        }
         return response;
     }
 
@@ -97,13 +108,6 @@ public class FollowingController {
             followingDao.delete(exists);
 
         }
-//        if (exists != null) {
-//
-//        }
-//        if (exists == null) {
-//            boolean follow = false;
-//            response.addObject("exists", follow);
-//        }
 
         return response;
     }

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <jsp:include page="../include/header.jsp" />
 
 <main>
@@ -23,7 +24,7 @@
 <c:forEach items="${userSession}" var="userSession">
                         <tr>
                             <td>${userSession.date}</td>
-                            <td colspan="3">${userSession.sessionName}</td>
+                            <td colspan="3">${userSession.session_name}</td>
                             <td>${userSession.time} minutes</td>
                         </tr>
                         <tr>
@@ -32,9 +33,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="1">Rating: ${userSession.rating}</td>
-                            <td colspan="3">Session Type: ${userSession.sessionId}</td>
+                            <td colspan="1">Rating:
+                                <c:if test = "${userSession.rating == 5}">★★★★★</c:if>
+                                <c:if test = "${userSession.rating == 4}">★★★★</c:if>
+                                <c:if test = "${userSession.rating == 3}">★★★</c:if>
+                                <c:if test = "${userSession.rating == 2}">★★</c:if>
+                                <c:if test = "${userSession.rating == 1}">★</c:if></td>
+                            <td colspan="3">Session Type: ${userSession.session_id}  ${userSession.session_type}</td>
 
+
+
+<%----%>
                             <td>
                                 <a class="btn btn-primary"  role="button" href="/user/dataEntryEdit?id=${userSession.id}">Edit</a>
                                 <a class="btn btn-danger deleteEntry" role="button" href="/user/deleteEntry?id=${userSession.id}">Delete</a></td>

@@ -1,4 +1,5 @@
-<jsp:include page="../include/header.jsp" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../include/header.jsp"/>
 
 <main>
     <div class="container">
@@ -14,40 +15,22 @@
                         <tr>
                             <th class="h3" scope="col"></th>
                             <th class="h3" scope="col" colspan="3">User</th>
-                            <th class="h3" scope="col">Working On</th>
+                            <th class="h3" scope="col">Skills Practicing</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr style="background-color: #6a994e !important">
-                            <td>
+                        <c:forEach items="${following}" var="following">
+                            <tr style="background-color: #6a994e !important">
+                                <td>
                       <span class="fa-stack fa-2x">
                         <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-music fa-stack-1x text-black"></i>
+                        <i class="fa ${following.profile_icon} fa-stack-1x text-black"></i>
                       </span>
-                            </td>
-                            <td colspan="3" class="h4 align-middle">DebbieRenolds85</td>
-                            <td class="h4 align-middle">Tchaikovsky Piano Concerto</td>
-                        </tr>
-                        <tr style="background-color: #6a994e !important">
-                            <td>
-                      <span class="fa-stack fa-2x">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-paint-brush fa-stack-1x text-black"></i>
-                      </span>
-                            </td>
-                            <td colspan="3" class="h4 align-middle">CoolGuy247</td>
-                            <td class="h4 align-middle">Landscape Oil Painting</td>
-                        </tr>
-                        <tr style="background-color: #6a994e !important">
-                            <td>
-                      <span class="fa-stack fa-2x">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-laptop fa-stack-1x text-black"></i>
-                      </span>
-                            </td>
-                            <td colspan="3" class="h4 align-middle">WeepingWillow</td>
-                            <td class="h4 align-middle">Autobiography</td>
-                        </tr>
+                                </td>
+                                <td colspan="3" class="h4 align-middle">${following.username}</td>
+                                <td class="h4 align-middle">${following.skills_practicing}</td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -56,4 +39,4 @@
     </div>
 </main>
 
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../include/footer.jsp"/>

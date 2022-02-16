@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,20 +16,25 @@ public class DataEntryFormBean {
 
     private Integer id;
 
+    @NotEmpty
     private Integer userId;
 
-//    private List<Session> session = jdbcTemp.query("SELECT * FROM EMP_DETAILS", new RowMapper<Session>());;
+    @NotEmpty(message = "Choose a Session Type")
     private Integer sessionId;
 
-//    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    @NotEmpty(message = "Rating is Date")
     private String date;
 
+    @NotEmpty(message = "Rating is required")
     private Integer rating;
 
+    @NotEmpty(message = "Session name is required")
     private String sessionName;
+
 
     private String notes;
 
+    @NotEmpty(message = "Time is required")
     private Integer time;
 
     private List<String> errorMessages = new ArrayList<>();

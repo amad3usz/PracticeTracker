@@ -11,6 +11,10 @@
             <div class="row">
                 <div class="col-sm text-center">
                         <p>You have successfully created/updated your entry!</p>
+
+                        Click
+                        <a href="/user/inputHistory">here</a> to go back to your entries.
+
                 </div>
             </div>
         </div>

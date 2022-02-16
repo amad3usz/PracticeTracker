@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserSessionDAO extends JpaRepository<UserSession, Long> {
 
@@ -18,8 +19,12 @@ public interface UserSessionDAO extends JpaRepository<UserSession, Long> {
 
     UserSession findBySessionId(Integer id);
 
-    @Query(value = "SELECT us, s from UserSession us Left Join Session s ON us.sessionId = s.sessionId Where us.userId = :userId ")
-    public List <UserSession> FindAllWithDescriptionQueryOrderByUserIdOrderByDateDesc(@Param("userId") Integer userId);
+    @Query(value = "SELECT us.*, session_type from PracticeTracker.user_sessions us Left Join PracticeTracker.sessions s ON us.session_id = s.session_id Where us.user_id = :userId ", nativeQuery = true)
+    List<Map<String,Object>> findAllWithDescriptionQuery(@Param("userId") Integer userId);
 
 
+//
+//     = findAllWithDescription
 }
+//check this
+//    s.session_type as user_session_type

@@ -3,7 +3,7 @@
 
 <main>
     <div class="container">
-        <div id="title" class="h1">500</div>
+        <div id="title" class="h1">404</div>
         <div
                 id="content"
                 class="py-5 me-md-3 px-3 px-md-5 text-white overflow-hidden"
@@ -11,13 +11,13 @@
 
 
 
-            <div class="row">
-                <div class="col-sm text-center">
-                    <p>
-                        There seems to be an internal server error.
-                    </p>
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <p>
+                            Looks like we can't find what you're looking for.
+                        </p>
+                    </div>
                 </div>
-            </div>
             </form>
         </div>
     </div>

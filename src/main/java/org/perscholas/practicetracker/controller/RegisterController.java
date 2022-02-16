@@ -89,21 +89,6 @@ public class RegisterController {
                                        HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
 
-        String firstName = form.getFirstName();
-        String lastName = form.getLastName();
-        String email = form.getEmail();
-        String username = form.getUsername();
-        String password = form.getPassword();
-        String confirmPassword = form.getConfirmPassword();
-        String gender = form.getGender();
-        String DOB = form.getDOB();
-//        String []skillsPracticing = request.getParameterValues("skillsPracticing");
-//        String skillsPracticing2 = Arrays.toString(skillsPracticing);
-        String profileIcon = form.getProfileIcon();
-
-        System.out.println(form); //from toString method in bean, formats the output to individual lines without having to assign each value to a variable
-        System.out.println(firstName + lastName + email + username + password + confirmPassword +  gender + DOB + profileIcon);
-
         if (errors.hasErrors()) {
             for ( FieldError error : errors.getFieldErrors() ) {
                 form.getErrorMessages().add(error.getDefaultMessage());
@@ -135,9 +120,7 @@ public class RegisterController {
             String encryptedPassword = passwordEncoder.encode(form.getPassword());
             user.setPassword(encryptedPassword);
             user.setConfirmPassword(encryptedPassword);
-//            UserRole userRole = userDao.findByUsername();
-//            userRole.setUserId(user);
-//            userRole.setUserRole("USER");
+
             //saves new user, and will return a user object with id populated
             //creates a new autoincremented id and returns object with new value
             user = userDao.save(user);
@@ -161,19 +144,6 @@ public class RegisterController {
     public ModelAndView success(HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("register/registrationSuccess");
-//        String username = (String) session.getAttribute(SESSION_KEY);
-//        if (StringUtils.equals(username, "tom")) {
-//            // add the username to the response model so that it can be displayed on the jsp page.
-//            response.addObject("loginusername", username);
-//
-//
-//        } else {
-//            // need to implement here to redirect back to login page
-//            // because it means the user has requested the /success url
-//            // but is not in the session
-//            response.setViewName("redirect:/register");
-//        }
-
         return response;
     }
 

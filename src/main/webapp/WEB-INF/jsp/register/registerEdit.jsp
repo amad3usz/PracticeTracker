@@ -154,62 +154,10 @@
                             id="skillsPracticing"
                             type="text"
                             path="skillsPracticing"
-                            placeholder="Enter the skill you are practicing"
+                            placeholder="Enter the skill(s) you are practicing"
                             class="form-control"
                             required="true"
                     />
-<%--                    <div class="form-check mx-3">--%>
-<%--                        <form:checkbox--%>
-<%--                                path="skillsPracticing"--%>
-<%--                                id="music"--%>
-<%--                                value="Music"--%>
-<%--                                name="skillsPracticing"--%>
-<%--                                class="form-check-input practice"--%>
-<%--                        />--%>
-<%--                        <label for="music" class="form-check-label">Music</label>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-check mx-3">--%>
-<%--                        <form:checkbox--%>
-<%--                                path="skillsPracticing"--%>
-<%--                                id="art"--%>
-<%--                                value="Art"--%>
-<%--                                name="skillsPracticing"--%>
-<%--                                class="form-check-input practice"--%>
-<%--                        />--%>
-<%--                        <label for="art" class="form-check-label">Art</label>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-check mx-3">--%>
-<%--                        <form:checkbox--%>
-<%--                                path="skillsPracticing"--%>
-<%--                                id="writing"--%>
-<%--                                value="Writing"--%>
-<%--                                name="skillsPracticing"--%>
-<%--                                class="form-check-input practice"--%>
-<%--                        />--%>
-<%--                        <label for="writing" class="form-check-label">Writing</label>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-check mx-3">--%>
-<%--                        <form:checkbox--%>
-<%--                                path="skillsPracticing"--%>
-<%--                                id="other"--%>
-<%--                                value="Other"--%>
-<%--                                name="skillsPracticing"--%>
-<%--                                class="form-check-input practice"--%>
-<%--                        />--%>
-<%--                        <label for="other" class="form-check-label">Other</label>--%>
-<%--                    </div>--%>
-<%--                    <input--%>
-<%--                            type="button"--%>
-<%--                            class="btn btn-primary btn-sm mb-1"--%>
-<%--                            onclick="selects()"--%>
-<%--                            value="Select All"--%>
-<%--                    />--%>
-<%--                    <input--%>
-<%--                            type="button"--%>
-<%--                            class="btn btn-primary btn-sm mb-1"--%>
-<%--                            onclick="deSelect()"--%>
-<%--                            value="Deselect All"--%>
-<%--                    />--%>
                 </div>
 
                 <div class="col-6 col-sm-3 mt-3">

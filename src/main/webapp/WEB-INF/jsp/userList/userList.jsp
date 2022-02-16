@@ -1,5 +1,5 @@
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<jsp:include page="../include/header.jsp" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="../include/header.jsp"/>
 
 
 <main>
@@ -17,31 +17,36 @@
                         <button type="submit">Search</button>
                     </form>
 
+                    <table class="table text-white">
+                        <thead>
+                        <tr>
+                            <th class="h3" scope="col"></th>
+                            <th class="h3" scope="col">
+                                Username
+                            </th>
+                            <th class="h3" scope="col" colspan="3">Name</th>
+                        </tr>
+                        </thead>
+                        <c:forEach items="${userListKey}" var="user">
+                            <tr style="background-color: #6a994e !important">
+                                <td><span class="fa-stack fa-2x">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa ${user.profileIcon} fa-stack-1x text-black"></i></span></td>
+                                <td class="h4 align-middle"><a class="text-white"
+                                                               href="/user/profile?id=${user.id}">${user.username}</a>
+                                </td>
+                                <td colspan="3" class="h4 align-middle"><a class="text-white"
+                                                                           href="/user/profile?id=${user.id}">${user.firstName} ${user.lastName}</a>
+                                </td>
 
-                        <c:if test="${ userListKey != null || userListKey.id != ''}">
-<%--                            not sure what to do here to not show this if the resulting --%>
-                            <table>
-                                <tr>
-                                    <td><b>Username</b></td>
-                                    <td><b>First Name</b></td>
-                                    <td><b>Last Name</b></td>
-                                </tr>
-                                <c:forEach items="${userListKey}" var="user">
-                                    <tr>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
 
-                                        <td>${user.username}</td>
-                                        <td>${user.firstName}</td>
-                                        <td>${user.lastName}</td>
-                                        <td><a href="/user/profile?id=${user.id}">Edit</a></td>
-                                    </tr>
-
-                                </c:forEach>
-                            </table>
-                        </c:if>
-                        <c:if test="${userListKey  == null}">
-                            <p>Input the username you are searching for.</p>
-                        </c:if>
-
+                    <c:if test="${userListKey  == null}">
+                        <p>Input the username you are searching for.</p>
+                    </c:if>
 
 
                 </div>
@@ -51,4 +56,4 @@
 </main>
 
 
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../include/footer.jsp"/>
