@@ -34,8 +34,8 @@ public class EditUserController {
             form.setFirstName(user.getFirstName());
             form.setLastName(user.getLastName());
             form.setUsername(user.getUsername());
-            form.setPassword(user.getPassword());
-            form.setConfirmPassword(user.getConfirmPassword());
+//            form.setPassword(user.getPassword());
+//            form.setConfirmPassword(user.getConfirmPassword());
             form.setId(user.getId());
             form.setDOB(user.getDOB());
             form.setGender(user.getGender());

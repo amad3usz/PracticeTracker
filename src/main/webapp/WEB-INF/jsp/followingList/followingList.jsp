@@ -27,7 +27,9 @@
                         <i class="fa ${following.profile_icon} fa-stack-1x text-black"></i>
                       </span>
                                 </td>
-                                <td colspan="3" class="h4 align-middle">${following.username}</td>
+
+                                <td colspan="3" class="h4 align-middle"><a class="text-white"
+                                                                           href="/user/profile?id=${following.following_id}">${following.username}</a></td>
                                 <td class="h4 align-middle">${following.skills_practicing}</td>
                             </tr>
                         </c:forEach>

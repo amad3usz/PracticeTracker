@@ -13,8 +13,8 @@
                 <div class="col-sm text-center">
 
                     <form method="get" action="/user/userList">
-                        <input type="text" name="search" value="${searchInput}">
-                        <button type="submit">Search</button>
+                        <input class="form-control form-control-lg" type="text" name="search" value="${searchInput}">
+                        <button class="btn btn-primary" type="submit">Search</button>
                     </form>
 
                     <table class="table text-white">

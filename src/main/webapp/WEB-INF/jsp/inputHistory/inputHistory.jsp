@@ -39,7 +39,7 @@
                                 <c:if test = "${userSession.rating == 3}">★★★</c:if>
                                 <c:if test = "${userSession.rating == 2}">★★</c:if>
                                 <c:if test = "${userSession.rating == 1}">★</c:if></td>
-                            <td colspan="3">Session Type: ${userSession.session_id}  ${userSession.session_type}</td>
+                            <td colspan="3">Session Type: ${userSession.session_type}</td>
 
 
 
