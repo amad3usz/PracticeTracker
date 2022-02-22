@@ -83,24 +83,32 @@
                     <%--                    </button>--%>
 
                     <c:choose>
-                        <c:when test="${exists}">
-                            Following<br/>
-                        </c:when>
-                        <c:otherwise>
-                            Not Following<br/>
-                        </c:otherwise>
-                    </c:choose>
-                    <c:choose>
-                        <c:when test="${exists}">
-                            <a href="/user/unfollow?id=${user.id}">
-                                <i class="fa-solid fa-user-minus text-black"></i></a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="/user/follow?id=${user.id}">
-                                <i class="fa fa-user-plus text-black"></i></a>
-                        </c:otherwise>
-                    </c:choose>
 
+                        <c:when test="${user1 != user2}">
+                            <c:choose>
+                                <c:when test="${exists}">
+                                    Following<br/>
+                                </c:when>
+                                <c:otherwise>
+                                    Not Following<br/>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${exists}">
+                                    <a href="/user/unfollow?id=${user.id}">
+                                        <i class="fa-solid fa-user-minus text-black"></i></a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="/user/follow?id=${user.id}">
+                                        <i class="fa fa-user-plus text-black"></i></a>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:when>
+                        <c:otherwise>
+                            This is you!
+                        </c:otherwise>
+
+                    </c:choose>
 
                 </div>
             </div>

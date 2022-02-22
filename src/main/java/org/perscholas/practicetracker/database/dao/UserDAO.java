@@ -10,22 +10,12 @@ import java.util.List;
 
 public interface UserDAO extends JpaRepository<User, Long> {
 
-    public User findById(@Param("id") Integer id);
+    User findById(@Param("id") Integer id);
 
-    public User findByEmail(@Param("email") String email);
+    User findByUsername(@Param("username") String username);
 
-    public User findByUsername(@Param("username") String username);
+    List<User> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrUsernameContainingIgnoreCase(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("username") String username);
 
-    public List<User> findByLastName(@Param("lastName") String lastName);
-
-//    @Query ("SELECT u FROM User u WHERE u.firstName = :firstName or u.lastName = :lastName")
-    public List<User> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrUsernameContainingIgnoreCase(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("username") String username);
-
-//    @Query("SELECT u FROM User u WHERE u.username = :username")
-//    public List<User> findByUsername(@Param("username") String username);
-
-
-//    don't really need
     @Query("SELECT ur FROM UserRole ur WHERE ur.id = :userId")
     List<UserRole> getUserRoles(Integer userId);
 }

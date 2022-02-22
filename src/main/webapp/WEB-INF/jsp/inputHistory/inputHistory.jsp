@@ -45,8 +45,8 @@
 
 <%----%>
                             <td>
-                                <a class="btn btn-primary"  role="button" href="/user/dataEntryEdit?id=${userSession.id}">Edit</a>
-                                <a class="btn btn-danger deleteEntry" role="button" href="/user/deleteEntry?id=${userSession.id}">Delete</a></td>
+                                <a class="btn btn-primary btn-sm"  role="button" href="/user/dataEntryEdit?id=${userSession.id}">Edit</a>
+                                <a class="btn btn-danger btn-sm" role="button" href="/user/deleteEntry?id=${userSession.id}">Delete</a></td>
                         </tr>
                             </c:forEach>
 

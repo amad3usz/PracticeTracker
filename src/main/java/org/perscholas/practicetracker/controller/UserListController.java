@@ -3,8 +3,6 @@ package org.perscholas.practicetracker.controller;
 import org.apache.commons.lang3.StringUtils;
 import org.perscholas.practicetracker.database.dao.UserDAO;
 import org.perscholas.practicetracker.database.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,18 +18,18 @@ public class UserListController {
     @Autowired
     private UserDAO userDao;
 
-    public static final Logger LOG = LoggerFactory.getLogger(UserListController.class);
-
     @RequestMapping(value = "/userList", method = RequestMethod.GET)
     public ModelAndView userList(@RequestParam(required = false) String search) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("userList/userList");
 
-        LOG.debug("debug message!");
+        // search function to find user by part of username, firstname, and lastname
         if ( ! StringUtils.isEmpty(search)) {
             List<User> users = userDao.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrUsernameContainingIgnoreCase(search, search, search);
 
+            // adds list of users object that match search query
             response.addObject("userListKey", users);
+            // adds search input into the query
             response.addObject("searchInput", search);
         }
         return response;

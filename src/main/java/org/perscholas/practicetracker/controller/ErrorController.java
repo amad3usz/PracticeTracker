@@ -18,13 +18,16 @@ public class ErrorController {
 
     @RequestMapping(value = "/error/404")
     public String error(HttpServletRequest request) {
+        // used to display 404 error page
         String originalUri = (String) request.getAttribute("javax.servlet.forward.request_uri");
         log.error("Requested URL not found: " + request.getMethod() + " " + originalUri);
+
         return "error/404";
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ModelAndView accessDenied(HttpServletRequest request, Exception ex) {
+        // used to display 404 error page is user is not authenticated
         ModelAndView model = new ModelAndView("error/404");
         log.error(ex.getMessage());
 
@@ -33,8 +36,8 @@ public class ErrorController {
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleAllExceptions(HttpServletRequest request, Exception ex) {
+        // used to display 500 error page
         log.error("Error page exception: " + getRequestURL(request), ex);
-
         ModelAndView model = new ModelAndView("error/500");
 
         String stackTrace = getHTMLStackTrace(ex);

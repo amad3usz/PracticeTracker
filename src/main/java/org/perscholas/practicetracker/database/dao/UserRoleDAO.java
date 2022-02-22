@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRoleDAO extends JpaRepository<UserRole, Long> {
 
-    //UserRole findByUserId(@Param("userId") Integer userId);
 }

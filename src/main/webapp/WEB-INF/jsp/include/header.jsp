@@ -56,7 +56,7 @@
                 </li>
                 <li class="nav-item">
                     <sec:authorize access="isAuthenticated()">
-                        <a class="nav-link ${page.endsWith('/registerEdit') ? 'active' : ''}" href="/registration/registerEdit">Edit Account</a>
+                        <a class="nav-link ${page.endsWith('/registerEdit') ? 'active' : ''}" href="/user/registerEdit">Edit Account</a>
                     </sec:authorize>
                     <sec:authorize access="!isAuthenticated()">
                         <a class="nav-link ${page.endsWith('/register') ? 'active' : ''}" href="/registration/register">Register</a>
@@ -72,7 +72,7 @@
                 </li>
                 <li class="nav-item">
                     <sec:authorize access="isAuthenticated()">
-                        <a class="nav-link ${page.endsWith('/profile') ? 'active' : ''}" href="/user/myProfile">Profile</a>
+                        <a class="nav-link ${page.endsWith('/myProfile') ? 'active' : ''}" href="/user/myProfile">Profile</a>
                     </sec:authorize>
                 </li>
                 <li class="nav-item">
@@ -82,7 +82,7 @@
                 </li>
                 <li class="nav-item">
                     <sec:authorize access="isAuthenticated()">
-                    <a class="nav-link ${page.endsWith('/following') ? 'active' : ''}" href="/user/followingList">Following</a>
+                    <a class="nav-link ${page.endsWith('/followingList') ? 'active' : ''}" href="/user/followingList">Following</a>
                     </sec:authorize>
                 </li>
                 <li class="nav-item">

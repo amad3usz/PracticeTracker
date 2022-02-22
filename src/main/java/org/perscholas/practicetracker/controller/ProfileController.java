@@ -38,15 +38,18 @@ public class ProfileController {
         ModelAndView response = new ModelAndView();
         response.setViewName("userProfile/userProfile");
 
+        // get authenticated user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
 
+        // create user object from current user
         User user = userDao.findByUsername(currentUserName);
         response.addObject("user", user);
 
-
+        // retrieve user session information to display on profile page and create user session object
         List<UserSession> us = userSessionDao.findByUserIdOrderByDateDesc(user.getId());
         response.addObject("userSession", us);
+
         return response;
     }
 
@@ -55,12 +58,40 @@ public class ProfileController {
         ModelAndView response = new ModelAndView();
         response.setViewName("userProfile/userProfile");
 
+        // get authenticated user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
-        User user2 = userDao.findByUsername(currentUserName);
-        Integer userId = user2.getId();
 
-        Following exists = followingDao.findByUserIdAndFollowingId(userId, id);
+        // create user object from user whose profile page is being viewed
+        User user = userDao.findById(id);
+        response.addObject("user", user);
+
+        // retrieve user session information (from user whose profile page is displayed)
+        // to display on profile page and create user session object
+        List<UserSession> us = userSessionDao.findByUserId(user.getId());
+        response.addObject("userSession", us);
+
+
+        // the following code below is redundant in some areas, but it used to ensure the
+        // follow/unfollow mechanic is working properly
+        // the code below is used to check if current user is the same as the user whose profile
+        // is currently being viewed. if the users match, it will display "This is you!" on the profile
+        // and will not give user the option to add themselves
+
+        // creates authenticated user object
+        User user2 = userDao.findByUsername(currentUserName);
+        Integer userId2 = user2.getId();
+        response.addObject("user2", userId2);
+
+        // create user object of user whose profile is currently being viewed
+        User user1 = userDao.findById(id);
+        Integer userId1 = user1.getId();
+        response.addObject("user1", userId1);
+
+        // creates following object, which is picks which option to displa on profile (to follow or unfollow)
+        // and tell the user whether they are following or not following the user whose page they are
+        // viewing
+        Following exists = followingDao.findByUserIdAndFollowingId(userId2, id);
         if (exists != null) {
             boolean following = true;
             response.addObject("exists", following);
@@ -70,14 +101,7 @@ public class ProfileController {
             response.addObject("exists", following);
         }
 
-
-        User user = userDao.findById(id);
-        response.addObject("user", user);
-
-        List<UserSession> us = userSessionDao.findByUserId(user.getId());
-        response.addObject("userSession", us);
-
-
         return response;
     }
+
 }

@@ -12,15 +12,22 @@
             <div class="row">
                 <div class="col-sm text-center">
 
-                    <form method="get" action="/user/userList">
-                        <input class="form-control form-control-lg" type="text" name="search" value="${searchInput}">
-                        <button class="btn btn-primary" type="submit">Search</button>
+                    <form method="get" action="/user/userList"><div class="row justify-content-center">
+                        <div class="col-4">
+                            <input class="form-control form-control-lg" type="text" name="search" value="${searchInput}">
+                        </div>
+                        <div class="col-2">
+                            <button class="btn-primary btn-lg" type="submit">Search</button>
+                        </div>
+                    </div>
+
+
                     </form>
 
                     <table class="table text-white">
                         <thead>
                         <tr>
-                            <th class="h3" scope="col"></th>
+                            <th class="h3" scope="col"> </th>
                             <th class="h3" scope="col">
                                 Username
                             </th>

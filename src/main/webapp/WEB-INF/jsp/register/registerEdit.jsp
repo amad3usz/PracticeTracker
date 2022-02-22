@@ -11,7 +11,7 @@
                 class="py-5 me-md-3 px-3 px-md-5 text-white overflow-hidden"
         >
             <form:form class="row needs-validation" id="registerForm" method="post"
-                       action="/registration/registerSubmit" modelAttribute="form">
+                       action="/user/registerSubmit" modelAttribute="form">
                 <input type="hidden" name="id" value="${form.id}">
                 <div class="col-sm-4 mt-3">
                     <label for="firstName" class="form-label">First Name</label>

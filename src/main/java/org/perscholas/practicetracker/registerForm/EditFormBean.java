@@ -4,40 +4,34 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.hibernate.validator.constraints.Length;
 import org.perscholas.practicetracker.validation.TwoFieldsEqual;
-import org.perscholas.practicetracker.validation.UsernameUnique;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Getter
 @Setter
 @TwoFieldsEqual(passwordField = "password", passwordConfirmField = "confirmPassword", message = "Passwords must be the same")
-public class RegisterFormBean {
+public class EditFormBean {
 
     private Integer id;
 
     @NotEmpty(message = "First name is required")
     //makes sure it's not null and not empty
-    @Pattern(regexp = "^[A-Za-z]+$" , message = "Must contain only uppercase and lowercase letters")
+    @Pattern(regexp = "^[A-Za-z]+$", message = "Must contain only uppercase and lowercase letters")
     private String firstName;
 
     @NotEmpty(message = "Last name is required")
-    @Pattern(regexp = "^[A-Za-z]+$" , message = "Must contain only uppercase and lowercase letters")
+    @Pattern(regexp = "^[A-Za-z]+$", message = "Must contain only uppercase and lowercase letters")
     private String lastName;
 
     @NotEmpty(message = "Email is required")
-    @Pattern(regexp = "^.+@.+$" , message = "Invalid email format")
+    @Pattern(regexp = "^.+@.+$", message = "Invalid email format")
     private String email;
 
-    @NotEmpty (message = "Username is required")
-    @Length(min =1, max = 15, message = "Username must include at least one character and no more than 15")
-    @Pattern(regexp = "^[A-Za-z0-9]{1,15}$" , message = "Must contain only letters and numbers")
-    @UsernameUnique(message = "Username must be unique")
+    @NotEmpty(message = "Username is required")
     private String username;
 
     @NotEmpty
@@ -65,3 +59,4 @@ public class RegisterFormBean {
     } //overrides default to string (makes it print nicer)
 
 }
+

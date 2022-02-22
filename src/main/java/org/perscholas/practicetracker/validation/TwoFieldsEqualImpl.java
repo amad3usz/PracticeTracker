@@ -28,7 +28,6 @@ public class TwoFieldsEqualImpl implements ConstraintValidator<TwoFieldsEqual, O
             final String passwordFieldValue = BeanUtils.getProperty(value, passwordField);
             final String passwordConfirmFieldValue = BeanUtils.getProperty(value, passwordConfirmField);
 
-            //Why would we want to return true if both fields are null? Don't we want to have the user put in a password?
             if (passwordFieldValue == null && passwordConfirmFieldValue == null) {
                 return true;
             }
@@ -38,12 +37,12 @@ public class TwoFieldsEqualImpl implements ConstraintValidator<TwoFieldsEqual, O
             }
 
         } catch (Exception e) {
-            //do nothing?
-        }
 
+        }
         context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate()).addPropertyNode(passwordField).addConstraintViolation();
 
         return false;
     }
+
 }

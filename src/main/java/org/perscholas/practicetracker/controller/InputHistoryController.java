@@ -1,7 +1,6 @@
 package org.perscholas.practicetracker.controller;
 
 import org.perscholas.practicetracker.dataEntryForm.DataEntryFormBean;
-import org.perscholas.practicetracker.database.dao.SessionDAO;
 import org.perscholas.practicetracker.database.dao.UserDAO;
 import org.perscholas.practicetracker.database.dao.UserSessionDAO;
 import org.perscholas.practicetracker.database.entity.User;
@@ -22,8 +21,8 @@ import java.util.Map;
 
 @Controller
 public class InputHistoryController {
-    @Autowired
-    private SessionDAO sessionDao;
+//    @Autowired
+//    private SessionDAO sessionDao;
 
     @Autowired
     private UserSessionDAO userSessionDao;
@@ -34,42 +33,35 @@ public class InputHistoryController {
     @RequestMapping(value = "/user/inputHistory", method = RequestMethod.GET)
     public ModelAndView dataEntry(@ModelAttribute("form") @Valid DataEntryFormBean form,
                                   @ModelAttribute("session") @Valid DataEntryFormBean session) throws Exception {
-
         ModelAndView response = new ModelAndView();
         response.setViewName("inputHistory/inputHistory");
 
+        // get authenticated user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
 
+        // create user object
         User user = userDao.findByUsername(currentUserName);
-//        List<UserSession> userSessions = userSessionDao.findByUserIdOrderByDateDesc(user.getId());
-////        List<UserSession> userSessions = userSessionDao.FindAllWithDescriptionQuery(user.getId());
-//        response.addObject("userSession", userSessions);
 
-
+        // retrieve input history (query joined with session table to retrieve session type names)
         List<Map<String,Object>> userSessions2 = userSessionDao.findAllWithDescriptionQuery(user.getId());
         response.addObject("userSession", userSessions2);
-        // NEED TO FIGURE OUT HOW TO PULL SESSION NAME FROM SESSIONS TABLE USING USERSESSION SESSION_ID
-//        Session sessionType = sessionDao.findBySessionId(userSessions);
-//        response.addObject("sessionType", sessionType);
 
-//        FindAllWithDescriptionQuery
         return response;
-
     }
 
     @RequestMapping(value = "/user/deleteEntry", method = RequestMethod.GET)
     public ModelAndView delete(@RequestParam Integer id) throws Exception {
         ModelAndView response = new ModelAndView();
-
         response.setViewName("redirect:/user/inputHistory");
-//        System.out.println(delete());
+
+        // get specified user session and delete session
         UserSession deleteSession = userSessionDao.findById(id);
         if (deleteSession != null) {
             userSessionDao.delete(deleteSession);
         }
 
-
         return response;
     }
+
 }

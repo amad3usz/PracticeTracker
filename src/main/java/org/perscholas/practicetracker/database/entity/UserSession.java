@@ -16,10 +16,10 @@ public class UserSession {
     @Column(name = "id")
     private Integer id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-    @Column(name = "user_id")
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+//    @Column(name = "user_id")
+    private User user;
 
     @Column(name = "session_id")
     private Integer sessionId;
@@ -48,7 +48,7 @@ public class UserSession {
     public String toString() {
         return "UserSession{" +
                 "id=" + id +
-                ", userId=" + userId +
+                ", userId=" + user +
                 ", sessionId=" + sessionId +
                 ", date='" + date + '\'' +
                 ", rating=" + rating +

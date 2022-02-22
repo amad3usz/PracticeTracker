@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+//majority of code by Eric Heilig
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -24,15 +25,20 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+        // user by username and create user object
         User user = userDao.findByUsername(username);
 
+        // if user doesn't exist, throw UsernameNotFoundException
         if (user == null) {
             throw new UsernameNotFoundException("Username '" + username + "' not found in database");
         }
 
+        // retrieve user role based on user id
         List<UserRole> userRoles = userDao.getUserRoles(user.getId());
+        // gives authority based on user role
         Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
 
+        // returns authenticated user (including user role(s)
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), springRoles);
     }
 
