@@ -55,32 +55,6 @@
                     ${user.skillsPracticing}
                 </div>
                 <div class="col-sm h3 text-center">
-                    <%--                    Add Me!<br />--%>
-                    <%--                    <button--%>
-                    <%--                            id="addFriend"--%>
-                    <%--                            onclick="addFriend(${user.id},--%>
-                    <%--                            <c:choose>--%>
-                    <%--                            <c:when test="${exists}">--%>
-                    <%--                                    1--%>
-                    <%--                            </c:when>--%>
-                    <%--                            <c:otherwise>--%>
-                    <%--                                    0--%>
-                    <%--                            </c:otherwise>--%>
-                    <%--                            </c:choose>)"--%>
-                    <%--                            class="btn btn-primary"--%>
-                    <%--                            type="submit"--%>
-                    <%--                            data-bs-toggle="modal"--%>
-                    <%--                            data-bs-target="#FriendModal"--%>
-                    <%--                    >--%>
-                    <%--                        <c:choose>--%>
-                    <%--                        <c:when test="${exists}">--%>
-                    <%--                            Unfollow--%>
-                    <%--                        </c:when>--%>
-                    <%--                        <c:otherwise>--%>
-                    <%--                            Follow--%>
-                    <%--                        </c:otherwise>--%>
-                    <%--                        </c:choose>--%>
-                    <%--                    </button>--%>
 
                     <c:choose>
 

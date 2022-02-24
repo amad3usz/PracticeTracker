@@ -45,6 +45,9 @@ public class DataEntryController {
         List<Session> allSession = sessionDao.getAllSessions();
         response.addObject("session", allSession);
 
+        //lambda expression example
+        allSession.forEach((i) -> System.out.println("Session Id: " + i.sessionId + ", Session Type: " + i.sessionType));
+
         // retrieve all user sessions for the authenticated user
         User user = userDao.findByUsername(currentUserName);
         List<UserSession> userSessions = userSessionDao.findByUserId(user.getId());

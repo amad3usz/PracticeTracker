@@ -1,7 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <jsp:include page="../include/header.jsp" />
-
+<%--<script>--%>
+<%--    function deleteSession(id) {--%>
+<%--        var result = confirm("Want to delete this entry?");--%>
+<%--        if (result) {--%>
+<%--            window.location = "/user/deleteEntry?id=" + id;--%>
+<%--        }--%>
+<%--    }--%>
+<%--</script>--%>
 <main>
     <div class="container">
         <div id="title" class="h1">My Entries</div>
@@ -41,12 +48,10 @@
                                 <c:if test = "${userSession.rating == 1}">★</c:if></td>
                             <td colspan="3">Session Type: ${userSession.session_type}</td>
 
-
-
-<%----%>
                             <td>
                                 <a class="btn btn-primary btn-sm"  role="button" href="/user/dataEntryEdit?id=${userSession.id}">Edit</a>
-                                <a class="btn btn-danger btn-sm" role="button" href="/user/deleteEntry?id=${userSession.id}">Delete</a></td>
+                                <a class="btn btn-danger btn-sm" role="button" onclick="deleteSession(${userSession.id})">Delete</a>
+                            </td>
                         </tr>
                             </c:forEach>
 

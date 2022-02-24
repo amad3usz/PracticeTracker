@@ -88,7 +88,7 @@ public class ProfileController {
         Integer userId1 = user1.getId();
         response.addObject("user1", userId1);
 
-        // creates following object, which is picks which option to displa on profile (to follow or unfollow)
+        // creates following object, which is picks which option to display on profile (to follow or unfollow)
         // and tell the user whether they are following or not following the user whose page they are
         // viewing
         Following exists = followingDao.findByUserIdAndFollowingId(userId2, id);

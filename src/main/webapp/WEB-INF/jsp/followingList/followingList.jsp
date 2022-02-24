@@ -22,14 +22,15 @@
                         <c:forEach items="${following}" var="following">
                             <tr style="background-color: #6a994e !important">
                                 <td>
-                      <span class="fa-stack fa-2x">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa ${following.profile_icon} fa-stack-1x text-black"></i>
-                      </span>
+                                  <span class="fa-stack fa-2x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa ${following.profile_icon} fa-stack-1x text-black"></i>
+                                  </span>
                                 </td>
-
-                                <td colspan="3" class="h4 align-middle"><a class="text-white"
-                                                                           href="/user/profile?id=${following.following_id}">${following.username}</a></td>
+                                <td colspan="3" class="h4 align-middle">
+                                    <a class="text-white"
+                                       href="/user/profile?id=${following.following_id}">${following.username}</a>
+                                </td>
                                 <td class="h4 align-middle">${following.skills_practicing}</td>
                             </tr>
                         </c:forEach>

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+//Code by Eric Heilig
 @Slf4j
 @Controller
 @ControllerAdvice
@@ -33,6 +34,7 @@ public class ErrorController {
 
         return model;
     }
+
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleAllExceptions(HttpServletRequest request, Exception ex) {

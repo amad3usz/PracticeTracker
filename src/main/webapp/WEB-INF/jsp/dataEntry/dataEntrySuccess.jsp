@@ -1,4 +1,4 @@
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="../include/header.jsp"/>
 
 
 <main>
@@ -10,10 +10,10 @@
         >
             <div class="row">
                 <div class="col-sm text-center">
-                        <p>You have successfully created/updated your entry!</p>
+                    <p>You have successfully created/updated your entry!</p>
 
-                        Click
-                        <a href="/user/inputHistory">here</a> to go back to your entries.
+                    Click
+                    <a href="/user/inputHistory">here</a> to go back to your entries.
 
                 </div>
             </div>
@@ -22,4 +22,4 @@
 </main>
 
 
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../include/footer.jsp"/>

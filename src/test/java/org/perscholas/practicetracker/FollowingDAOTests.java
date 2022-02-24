@@ -1,32 +1,25 @@
 package org.perscholas.practicetracker;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.perscholas.practicetracker.database.dao.*;
+import org.perscholas.practicetracker.database.dao.FollowingDAO;
 import org.perscholas.practicetracker.database.entity.Following;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+import java.util.Map;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
-class PracticeTrackerApplicationTests {
+public class FollowingDAOTests {
     @Autowired
     FollowingDAO followingDao;
 
-    @Autowired
-    SessionDAO sessionDAO;
-
-    @Autowired
-    UserDAO userDao;
-
-    @Autowired
-    UserRoleDAO userRoleDao;
-
-    @Autowired
-    UserSessionDAO userSessionDao;
-
     @Test
     public void testFindByUserIdAndFollowingId() {
+        //tests to find if user and following user exist in database
         Following expectedOutput = new Following();
         expectedOutput.setId(105);
         expectedOutput.setUserId(9);
@@ -38,15 +31,11 @@ class PracticeTrackerApplicationTests {
 
     }
 
-//    public void testFindAllWithDescriptionQuery() {
-//        List<Map<String,Object>> expectedOutput = new ;
-//        expectedOutput = followingDao.findAllWithDescriptionQuery(9);
-//
-//        List<Map<String, Object>> actualOutput = followingDao.findAllWithDescriptionQuery(9);
-//        assertThat(actualOutput)
-//                .usingRecursiveComparison()
-//                .isEqualTo(expectedOutput);
-//    }
+    @Test
+    public void testFindFollowingUserWithInformation() {
+        // test if list of user, followed users, and followed users information exists
+        List<Map<String,Object>> actualOutput = followingDao.findAllWithDescriptionQuery(9);
+        Assertions.assertThat(actualOutput.size()).isGreaterThan(0);
 
-
+    }
 }

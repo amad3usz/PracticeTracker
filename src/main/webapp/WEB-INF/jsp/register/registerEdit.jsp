@@ -62,6 +62,7 @@
                             title="Must only letters and numbers, and is at most 15 characters long"
                             class="form-control"
                             required="true"
+                            readonly="true"
                     />
                 </div>
                 <div class="col-sm-4 mt-3">
