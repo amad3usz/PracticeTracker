@@ -42,15 +42,6 @@
                                 <form:option value="${s.sessionId}" label="${s.sessionType}"/>
                             </c:forEach>
                         </form:select>
-
-                            <%--                        <datalist id="BLANK">--%>
-                            <%--                                &lt;%&ndash;                            <option value="${form.sessionName}"></option>&ndash;%&gt;--%>
-                            <%--                            <option value="Paganini Caprice No. 24"></option>--%>
-                            <%--                            <option--%>
-                            <%--                                    value="Mendelssohn Violin Concerto - 1st Mov."--%>
-                            <%--                            ></option>--%>
-                            <%--                            <option value="Bach Partita No. 3 - Bouree"></option>--%>
-                            <%--                        </datalist>--%>
                     </div>
                     <div class="col-lg">
                         <label
